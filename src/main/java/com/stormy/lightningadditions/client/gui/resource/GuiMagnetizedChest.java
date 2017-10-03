@@ -37,7 +37,6 @@ public class GuiMagnetizedChest extends GuiContainer{
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        this.drawDefaultBackground();
         GL11.glColor4f(1F, 1F, 1F, 1F);
         this.mc.getTextureManager().bindTexture(new ResourceLocation(texture));
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize); }
@@ -51,6 +50,14 @@ public class GuiMagnetizedChest extends GuiContainer{
         String s = this.te.getDisplayName().getUnformattedComponentText();
         //this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
         int x = GuiUtils.getXCenter(s, this.fontRenderer, xSize);
-        this.fontRenderer.drawString(s, x, 5, 0x404040); }
+        this.fontRenderer.drawString(s, x, 5, 0x404040);
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.func_191948_b(mouseX, mouseY);
+    }
 
 }

@@ -43,7 +43,6 @@ public class GuiBioFuelGenerator extends GuiContainer{
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        this.drawDefaultBackground();
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInformation.MODID + ":textures/gui/generator/gui_biofuel_generator.png"));
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
@@ -87,6 +86,13 @@ public class GuiBioFuelGenerator extends GuiContainer{
             net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
         }
 
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.func_191948_b(mouseX, mouseY);
     }
 
     private boolean isMouseOver(int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){
