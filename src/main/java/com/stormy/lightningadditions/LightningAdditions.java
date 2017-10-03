@@ -104,8 +104,6 @@ public class LightningAdditions
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ModSounds());
 
-        ModOreDict.registerOres();
-
     }
 
 
@@ -114,6 +112,8 @@ public class LightningAdditions
         LALogger.log("LA Initialisation!");
         proxy.registerRenders();
         proxy.init(event);
+
+        ModOreDict.registerOres();
 
         ModRecipes.init();
         RegistryParticleAccelerator.instance().registerRecipes();
