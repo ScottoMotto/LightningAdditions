@@ -20,6 +20,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -116,6 +118,10 @@ public class ModRegistry {
 
     public static void registerBiomes(){
         registerBiome(BiomeMining.biomeMining);
+    }
+
+    public static void registerBiomeTypes(){
+        BiomeDictionary.addTypes(BiomeMining.biomeMining, Type.FOREST);
     }
 
     public static void registerRenderItems(){
@@ -237,6 +243,7 @@ public class ModRegistry {
     @SubscribeEvent
     public void onBiomeRegistry(RegistryEvent.Register<Biome> event){
         biomeList.forEach(event.getRegistry()::register);
+        registerBiomeTypes();
     }
 
 }
