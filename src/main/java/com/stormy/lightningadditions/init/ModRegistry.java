@@ -13,6 +13,10 @@
 package com.stormy.lightningadditions.init;
 
 import com.stormy.lightningadditions.reference.ModInformation;
+import com.stormy.lightningadditions.tile.generator.TileEntityFuelGenerator;
+import com.stormy.lightningadditions.tile.generator.renderer.TileEntityFuelGeneratorRenderer;
+import com.stormy.lightningadditions.tile.resource.TileEntitySky;
+import com.stormy.lightningadditions.tile.resource.TileEntitySkyRenderer;
 import com.stormy.lightningadditions.world.dimMining.biome.BiomeMining;
 import com.stormy.lightninglib.lib.item.ModItemBlock;
 import net.minecraft.block.Block;
@@ -23,6 +27,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.LinkedList;
@@ -201,6 +206,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.NETHER_LAPIS_ORE);
         registerBlockRender(ModBlocks.NETHER_DIAMOND_ORE);
         registerBlockRender(ModBlocks.NETHER_EMERALD_ORE);
+
     }
 
     //Registry
