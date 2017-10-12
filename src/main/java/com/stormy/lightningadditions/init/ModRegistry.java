@@ -13,10 +13,6 @@
 package com.stormy.lightningadditions.init;
 
 import com.stormy.lightningadditions.reference.ModInformation;
-import com.stormy.lightningadditions.tile.generator.TileEntityFuelGenerator;
-import com.stormy.lightningadditions.tile.generator.renderer.TileEntityFuelGeneratorRenderer;
-import com.stormy.lightningadditions.tile.resource.TileEntitySky;
-import com.stormy.lightningadditions.tile.resource.TileEntitySkyRenderer;
 import com.stormy.lightningadditions.world.dimMining.biome.BiomeMining;
 import com.stormy.lightninglib.lib.item.ModItemBlock;
 import net.minecraft.block.Block;
@@ -27,7 +23,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.LinkedList;
@@ -97,6 +92,7 @@ public class ModRegistry {
         registerBlock(ModBlocks.ender_hopper);
         registerBlock(ModBlocks.particle_accellerator);
         registerBlock(ModBlocks.crop_comparator);
+        registerBlock(ModBlocks.display_case);
 
         //Generators
         registerBlock(ModBlocks.solar_generator);
@@ -184,6 +180,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.particle_accellerator);
         registerBlockRender(ModBlocks.ender_hopper);
         registerBlockRender(ModBlocks.crop_comparator);
+        registerBlockRender(ModBlocks.display_case);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);
