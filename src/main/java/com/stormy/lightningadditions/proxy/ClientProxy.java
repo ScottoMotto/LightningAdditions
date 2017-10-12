@@ -17,8 +17,10 @@ import com.stormy.lightningadditions.init.ModRegistry;
 import com.stormy.lightningadditions.reference.ModInformation;
 import com.stormy.lightningadditions.tile.generator.TileEntityFuelGenerator;
 import com.stormy.lightningadditions.tile.generator.renderer.TileEntityFuelGeneratorRenderer;
+import com.stormy.lightningadditions.tile.resource.TileEntityParticleAccelerator;
 import com.stormy.lightningadditions.tile.resource.TileEntitySky;
 import com.stormy.lightningadditions.tile.resource.TileEntitySkyRenderer;
+import com.stormy.lightningadditions.tile.resource.renderer.TileEntityParticlerAcceleratorRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -69,6 +71,7 @@ public class ClientProxy extends CommonProxy {
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySky.class, new TileEntitySkyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFuelGenerator.class, new TileEntityFuelGeneratorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityParticleAccelerator.class, new TileEntityParticlerAcceleratorRenderer());
 
     }
 
