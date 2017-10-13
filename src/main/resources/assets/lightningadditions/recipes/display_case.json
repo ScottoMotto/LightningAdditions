@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "YYY"
+  ],
+  "key": {
+    "X": {
+      "item": "lightningadditions:clear_glass"
+    },
+    "Y": {
+      "item": "minecraft:wooden_slab",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "lightningadditions:display_case",
+    "count": 1
+  }
+}

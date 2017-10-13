@@ -20,10 +20,15 @@ import com.stormy.lightningadditions.tile.resource.TileEntityDisplayCase;
 import com.stormy.lightningadditions.utility.GuiUtils;
 import com.stormy.lightningadditions.utility.logger.LALogger;
 import com.stormy.lightninglib.lib.utils.KeyChecker;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
@@ -128,15 +133,6 @@ public class GuiDisplayCase extends GuiContainer{
         this.buttonList.add(buttonSave);
         this.buttonList.add(buttonLoad);
 
-        this.translateX = te.getTileData().getDouble("tx");
-        this.translateY = te.getTileData().getDouble("ty");
-        this.translateZ = te.getTileData().getDouble("tz");
-        this.rotateX    = te.getTileData().getDouble("rx");
-        this.rotateY    = te.getTileData().getDouble("ry");
-        this.rotateZ    = te.getTileData().getDouble("rz");
-
-        this.scale      = te.getTileData().getDouble("s");
-
     }
 
     @Override
@@ -231,8 +227,6 @@ public class GuiDisplayCase extends GuiContainer{
                 break;
         }
 
-        ModNetworking.INSTANCE.sendToServer(new MessageDisplayCase(this.te.getPos(), this.translateX, this.translateY, this.translateZ, this.rotateX, this.rotateY, this.rotateZ, this.scale));
-
     }
 
     @Override
@@ -244,6 +238,9 @@ public class GuiDisplayCase extends GuiContainer{
 
     @Override
     protected  void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
+
+        renderItem();
+
         DecimalFormat df = new DecimalFormat("##.##");
         String s = this.te.getDisplayName().getUnformattedComponentText();
         //this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
@@ -285,6 +282,13 @@ public class GuiDisplayCase extends GuiContainer{
         this.func_191948_b(mouseX, mouseY);
     }
 
+    @Override
+    public void onGuiClosed() {
+        ModNetworking.INSTANCE.sendToServer(new MessageDisplayCase(this.te.getPos(), this.translateX, this.translateY, this.translateZ, this.rotateX, this.rotateY, this.rotateZ, this.scale));
+
+        super.onGuiClosed();
+    }
+
     private void save(){
         try {
             NBTTagCompound tag = this.player.getEntityData();
@@ -323,6 +327,10 @@ public class GuiDisplayCase extends GuiContainer{
         } catch (NullPointerException e){
             this.player.sendMessage(new TextComponentString("Error occurred while loading data."));
         }
+    }
+
+    private void renderItem(){
+        //TODO
     }
 
 }
