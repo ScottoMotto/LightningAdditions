@@ -16,6 +16,16 @@ public class TileEntityDisplayCase extends LATile implements IInventory{
 
     public static int INV_SIZE = 1;
 
+    private double translateX = 0;
+    private double translateY = 0;
+    private double translateZ = 0;
+
+    private double rotateX = 0;
+    private double rotateY = 0;
+    private double rotateZ = 0;
+
+    private double scale = 0;
+
     private NonNullList<ItemStack> inventory = NonNullList.withSize(INV_SIZE, ItemStack.EMPTY);
 
     @Override
@@ -172,6 +182,14 @@ public class TileEntityDisplayCase extends LATile implements IInventory{
 
         nbt.setTag("Items", list);
 
+        nbt.setDouble("tx", translateX);
+        nbt.setDouble("ty", translateY);
+        nbt.setDouble("tz", translateZ);
+        nbt.setDouble("rx", rotateX);
+        nbt.setDouble("ry", rotateY);
+        nbt.setDouble("rz", rotateZ);
+        nbt.setDouble("s", scale);
+
         return nbt;
     }
 
@@ -186,6 +204,64 @@ public class TileEntityDisplayCase extends LATile implements IInventory{
             this.setInventorySlotContents(slot, new ItemStack(stackTag));
         }
 
+        translateX = nbt.getDouble("tx");
+        translateY = nbt.getDouble("ty");
+        translateZ = nbt.getDouble("tz");
+        rotateX = nbt.getDouble("rx");
+        rotateY = nbt.getDouble("ry");
+        rotateZ = nbt.getDouble("rz");
+        scale = nbt.getDouble("s");
+
+    }
+
+    public void setVar(int id, double value) {
+        switch (id) {
+            case 0:
+                translateX = value;
+                break;
+            case 1:
+                translateY = value;
+                break;
+            case 2:
+                translateZ = value;
+                break;
+            case 3:
+                rotateX = value;
+                break;
+            case 4:
+                rotateY = value;
+                break;
+            case 5:
+                rotateZ = value;
+                break;
+            case 6:
+                scale = value;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public double getVar(int id) {
+        switch (id) {
+            case 0:
+                return translateX;
+            case 1:
+                return translateY;
+            case 2:
+                return translateZ;
+            case 3:
+                return rotateX;
+            case 4:
+                return rotateY;
+            case 5:
+                return rotateZ;
+            case 6:
+                return scale;
+            default:
+                break;
+        }
+        return 0;
     }
 
 }

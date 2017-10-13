@@ -29,18 +29,18 @@ public class ContainerDisplayCase extends Container{
         this.te = te;
 
         //Tile Entity
-        this.addSlotToContainer(new Slot(te, 0, 80, 35));
+        this.addSlotToContainer(new Slot(te, 0, 7, 7));
 
         //Player Inventory
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 9; j++){
-                this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 174 + i * 18));
             }
         }
 
         //Hotbar
         for (int i = 0; i < 9; i++){
-            this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
+            this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 232));
         }
 
     }

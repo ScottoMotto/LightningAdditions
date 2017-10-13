@@ -1,12 +1,10 @@
 package com.stormy.lightningadditions.tile.resource.renderer;
 
 import com.stormy.lightningadditions.tile.resource.TileEntityDisplayCase;
-import com.stormy.lightningadditions.tile.resource.TileEntityParticleAccelerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -28,11 +26,21 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
 
                     GlStateManager.translate(x + 0.5D, y + 0.5D, z + 0.5D);
 
-                    double xOffset = 0D;
-                    double yOffset = -0.475D;
-                    double zOffset = 0D;
+                    double xOffset = 0D      + te.getVar(0)/50;
+                    double yOffset = -0.475D + te.getVar(1)/50;
+                    double zOffset = 0D      + te.getVar(2)/50;
 
                     GlStateManager.translate(xOffset, yOffset, zOffset);
+
+                    double xRotate = te.getVar(3);
+                    double yRotate = te.getVar(4);
+                    double zRotate = te.getVar(5);
+
+                    GlStateManager.rotate((float) xRotate, 1, 0,0);
+                    GlStateManager.rotate((float) yRotate, 0, 1,0);
+                    GlStateManager.rotate((float) zRotate, 0, 0,1);
+
+                    GlStateManager.scale(1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10);
 
                     Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
@@ -44,13 +52,23 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
 
                     GlStateManager.scale(1.5D, 1.5D, 1.5D);
 
-                    double xOffset = 0.2D;
-                    double yOffset = -0.2D;
-                    double zOffset = -0.2D;
+                    double xOffset = 0.2D  + te.getVar(0)/50;
+                    double yOffset = -0.2D + te.getVar(1)/50;
+                    double zOffset = -0.2D + te.getVar(2)/50;
 
                     GlStateManager.translate(xOffset, yOffset, zOffset);
 
                     GlStateManager.rotate(45f, 1, 0, 1);
+
+                    double xRotate = te.getVar(3);
+                    double yRotate = te.getVar(4);
+                    double zRotate = te.getVar(5);
+
+                    GlStateManager.rotate((float) xRotate, 1, 0,0);
+                    GlStateManager.rotate((float) yRotate, 0, 1,0);
+                    GlStateManager.rotate((float) zRotate, 0, 0,1);
+
+                    GlStateManager.scale(1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10);
 
                     Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
