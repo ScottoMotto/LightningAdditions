@@ -87,7 +87,7 @@ public class LightningAdditions
         ModDimensions.init(); //Dimensions
 
         //XP Network Sharing
-        network = NetworkRegistry.INSTANCE.newSimpleChannel(ModInformation.MODID);
+        network = ModNetworking.INSTANCE;
         network.registerMessage(new SPacketUpdate.Handler(), SPacketUpdate.class, 0, Side.CLIENT);
         network.registerMessage(new CPacketRequest.Handler(), CPacketRequest.class, 1, Side.SERVER);
 
@@ -99,6 +99,7 @@ public class LightningAdditions
         ModItems.init();
         ModBlocks.init();
         ModRegistry.init();
+        ModNetworking.init();
 
         MinecraftForge.EVENT_BUS.register(new ModRegistry());
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());

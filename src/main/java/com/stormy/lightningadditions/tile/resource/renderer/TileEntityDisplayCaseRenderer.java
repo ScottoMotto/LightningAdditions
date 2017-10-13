@@ -26,21 +26,21 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
 
                     GlStateManager.translate(x + 0.5D, y + 0.5D, z + 0.5D);
 
-                    double xOffset = 0D      + te.getVar(0)/50;
-                    double yOffset = -0.475D + te.getVar(1)/50;
-                    double zOffset = 0D      + te.getVar(2)/50;
+                    double xOffset = 0D      + te.getTileData().getDouble("tx")/50;
+                    double yOffset = -0.475D + te.getTileData().getDouble("ty")/50;
+                    double zOffset = 0D      + te.getTileData().getDouble("tz")/50;
 
                     GlStateManager.translate(xOffset, yOffset, zOffset);
 
-                    double xRotate = te.getVar(3);
-                    double yRotate = te.getVar(4);
-                    double zRotate = te.getVar(5);
+                    double xRotate = te.getTileData().getDouble("rx");
+                    double yRotate = te.getTileData().getDouble("ry");
+                    double zRotate = te.getTileData().getDouble("rz");
 
                     GlStateManager.rotate((float) xRotate, 1, 0,0);
                     GlStateManager.rotate((float) yRotate, 0, 1,0);
                     GlStateManager.rotate((float) zRotate, 0, 0,1);
 
-                    GlStateManager.scale(1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10);
+                    GlStateManager.scale(1 + (float) te.getTileData().getDouble("s")/10, 1 + (float) te.getTileData().getDouble("s")/10, 1 + te.getTileData().getDouble("s")/10);
 
                     Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
@@ -52,23 +52,23 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
 
                     GlStateManager.scale(1.5D, 1.5D, 1.5D);
 
-                    double xOffset = 0.2D  + te.getVar(0)/50;
-                    double yOffset = -0.2D + te.getVar(1)/50;
-                    double zOffset = -0.2D + te.getVar(2)/50;
+                    double xOffset = 0.2D  + te.getTileData().getDouble("tx")/50;
+                    double yOffset = -0.2D + te.getTileData().getDouble("ty")/50;
+                    double zOffset = -0.2D + te.getTileData().getDouble("tz")/50;
 
                     GlStateManager.translate(xOffset, yOffset, zOffset);
 
                     GlStateManager.rotate(45f, 1, 0, 1);
 
-                    double xRotate = te.getVar(3);
-                    double yRotate = te.getVar(4);
-                    double zRotate = te.getVar(5);
+                    double xRotate = te.getTileData().getDouble("rx");
+                    double yRotate = te.getTileData().getDouble("ry");
+                    double zRotate = te.getTileData().getDouble("rz");
 
                     GlStateManager.rotate((float) xRotate, 1, 0,0);
                     GlStateManager.rotate((float) yRotate, 0, 1,0);
                     GlStateManager.rotate((float) zRotate, 0, 0,1);
 
-                    GlStateManager.scale(1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10, 1 + (float) te.getVar(6)/10);
+                    GlStateManager.scale(1 + (float) te.getTileData().getDouble("s")/10, 1 + (float) te.getTileData().getDouble("s")/10, 1 + te.getTileData().getDouble("s")/10);
 
                     Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 

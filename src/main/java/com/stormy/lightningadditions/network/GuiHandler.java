@@ -106,7 +106,7 @@ public class GuiHandler implements IGuiHandler{
             return new GuiParticleAccelerator(player.inventory, (TileEntityParticleAccelerator) world.getTileEntity(pos));
         }
         else if (ID == gui_id_display_case){
-            return new GuiDisplayCase(player.inventory, (TileEntityDisplayCase) world.getTileEntity(pos));
+            return new GuiDisplayCase(player.inventory, (TileEntityDisplayCase) world.getTileEntity(pos), player);
         }
 
         return null;
