@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.lwjgl.opengl.GL11;
 
@@ -217,6 +218,7 @@ public class GuiDisplayCase extends GuiContainer{
                 rotateY = 0;
                 rotateZ = 0;
                 scale = 0;
+                this.player.sendMessage(new TextComponentString("Values reset."));
                 break;
             case 15:
                 save();
@@ -237,6 +239,8 @@ public class GuiDisplayCase extends GuiContainer{
         GL11.glColor4f(1F, 1F, 1F, 1F);
         this.mc.getTextureManager().bindTexture(new ResourceLocation(texture));
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+
+        this.drawTexturedModalRect(getGuiLeft() + 150, getGuiTop() + 6, 177, 1, 15, 15);
     }
 
     @Override
@@ -307,7 +311,7 @@ public class GuiDisplayCase extends GuiContainer{
 
             tag.setTag("display_case_data", displayData);
 
-            this.player.sendMessage(new TextComponentString("Saved."));
+            this.player.sendMessage(new TextComponentString("Values copied."));
         } catch (NullPointerException e){
             this.player.sendMessage(new TextComponentString("Error occurred while saving data."));
         }
@@ -326,7 +330,7 @@ public class GuiDisplayCase extends GuiContainer{
             this.rotateZ = displayData.getDouble("rz");
             this.scale = displayData.getDouble("s");
 
-            this.player.sendMessage(new TextComponentString("Loaded."));
+            this.player.sendMessage(new TextComponentString("Values pasted."));
         } catch (NullPointerException e){
             this.player.sendMessage(new TextComponentString("Error occurred while loading data."));
         }
@@ -345,6 +349,23 @@ public class GuiDisplayCase extends GuiContainer{
         } else if (this.isMouseOver(mouseX, mouseY, 46, 147, 61, 167)){
             List<String> text = new ArrayList<String>();
             text.add("Paste");
+            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+        } else if (this.isMouseOver(mouseX, mouseY, 150, 6, 165, 21)){
+            List<String> text = new ArrayList<String>();
+            text.add(TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Info");
+            text.add("Put item to display in the slot at the top left.");
+            text.add("");
+            text.add("Translate moves the item along an axis.");
+            text.add("Rotate spins the item along an axis.");
+            text.add("Scale changes the size of the item.");
+            text.add("");
+            text.add("Click 'Reset' (R) to reset the settings.");
+            text.add("Click 'Copy' (C) to copy settings to the clipboard.");
+            text.add("Click 'Paste' (P) to paste setting from the clipboard.");
+            text.add("");
+            text.add(TextFormatting.UNDERLINE + "Keyboard Control");
+            text.add("Shift - Half Increments");
+            text.add("Ctrl - Single Increments");
             net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
         }
     }
