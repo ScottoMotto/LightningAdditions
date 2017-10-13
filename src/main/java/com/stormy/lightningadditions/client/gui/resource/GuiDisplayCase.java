@@ -37,6 +37,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiDisplayCase extends GuiContainer{
 
@@ -109,8 +111,8 @@ public class GuiDisplayCase extends GuiContainer{
 
         //Misc
         GuiButton buttonReset = new GuiButton(14, getGuiLeft() + 10, getGuiTop() + 147, 15, 20, "R");
-        GuiButton buttonSave = new GuiButton(15, getGuiLeft() + 28, getGuiTop() + 147, 15, 20, "S");
-        GuiButton buttonLoad = new GuiButton(16, getGuiLeft() + 46, getGuiTop() + 147, 15, 20, "L");
+        GuiButton buttonSave = new GuiButton(15, getGuiLeft() + 28, getGuiTop() + 147, 15, 20, "C");
+        GuiButton buttonLoad = new GuiButton(16, getGuiLeft() + 46, getGuiTop() + 147, 15, 20, "P");
 
         this.buttonList.add(buttonTXP);
         this.buttonList.add(buttonTXN);
@@ -240,8 +242,6 @@ public class GuiDisplayCase extends GuiContainer{
     @Override
     protected  void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
 
-        renderItem();
-
         DecimalFormat df = new DecimalFormat("##.##");
         String s = this.te.getDisplayName().getUnformattedComponentText();
         //this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
@@ -273,6 +273,8 @@ public class GuiDisplayCase extends GuiContainer{
         //Scale
         this.fontRenderer.drawString("Scale", 65, 152, 0x404040);
         this.fontRenderer.drawString(String.valueOf(df.format(scale)), 122, 152, 0x404040);
+
+        renderTooltips(mouseX, mouseY);
 
     }
 
@@ -330,8 +332,27 @@ public class GuiDisplayCase extends GuiContainer{
         }
     }
 
-    private void renderItem(){
-        //TODO
+    private void renderTooltips(int mouseX, int mouseY){
+        Minecraft mc = Minecraft.getMinecraft();
+        if (this.isMouseOver(mouseX, mouseY, 10, 147, 25, 167)){
+            List<String> text = new ArrayList<String>();
+            text.add("Reset");
+            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+        } else if (this.isMouseOver(mouseX, mouseY, 28, 147, 43, 167)){
+            List<String> text = new ArrayList<String>();
+            text.add("Copy");
+            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+        } else if (this.isMouseOver(mouseX, mouseY, 46, 147, 61, 167)){
+            List<String> text = new ArrayList<String>();
+            text.add("Paste");
+            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+        }
+    }
+
+    private boolean isMouseOver(int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){
+        int actualX = mouseX - ((this.width - this.xSize) / 2);
+        int actualY = mouseY - ((this.height - this.ySize) / 2);
+        return (actualX >= minX) && (actualX <= maxX) && (actualY >= minY) && (actualY <= maxY);
     }
 
 }
