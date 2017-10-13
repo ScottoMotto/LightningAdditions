@@ -48,6 +48,19 @@ public class BlockDisplayCase extends BlockContainer {
     }
 
     @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+        if (worldIn.getTileEntity(pos) != null) {
+            worldIn.getTileEntity(pos).getTileData().setDouble("tx", 0);
+            worldIn.getTileEntity(pos).getTileData().setDouble("ty", 0);
+            worldIn.getTileEntity(pos).getTileData().setDouble("tz", 0);
+            worldIn.getTileEntity(pos).getTileData().setDouble("rx", 0);
+            worldIn.getTileEntity(pos).getTileData().setDouble("ry", 0);
+            worldIn.getTileEntity(pos).getTileData().setDouble("rz", 0);
+            worldIn.getTileEntity(pos).getTileData().setDouble("s", 0);
+        }
+    }
+
+    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
         if (player != null) {
             if (!player.isSneaking()) {

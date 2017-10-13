@@ -215,7 +215,6 @@ public class GuiDisplayCase extends GuiContainer{
                 rotateY = 0;
                 rotateZ = 0;
                 scale = 0;
-                LALogger.info("CALLED");
                 break;
             case 15:
                 save();
@@ -226,6 +225,8 @@ public class GuiDisplayCase extends GuiContainer{
             default:
                 break;
         }
+
+        ModNetworking.INSTANCE.sendToServer(new MessageDisplayCase(this.te.getPos(), this.translateX, this.translateY, this.translateZ, this.rotateX, this.rotateY, this.rotateZ, this.scale));
 
     }
 
@@ -312,18 +313,18 @@ public class GuiDisplayCase extends GuiContainer{
 
     private void load(){
         try {
-        NBTTagCompound tag = this.player.getEntityData();
-        NBTTagCompound displayData = tag.getCompoundTag("display_case_data");
+            NBTTagCompound tag = this.player.getEntityData();
+            NBTTagCompound displayData = tag.getCompoundTag("display_case_data");
 
-        this.translateX = displayData.getDouble("tx");
-        this.translateY = displayData.getDouble("ty");
-        this.translateZ = displayData.getDouble("tz");
-        this.rotateX = displayData.getDouble("rx");
-        this.rotateY = displayData.getDouble("ry");
-        this.rotateZ = displayData.getDouble("rz");
-        this.scale = displayData.getDouble("s");
+            this.translateX = displayData.getDouble("tx");
+            this.translateY = displayData.getDouble("ty");
+            this.translateZ = displayData.getDouble("tz");
+            this.rotateX = displayData.getDouble("rx");
+            this.rotateY = displayData.getDouble("ry");
+            this.rotateZ = displayData.getDouble("rz");
+            this.scale = displayData.getDouble("s");
 
-        this.player.sendMessage(new TextComponentString("Loaded."));
+            this.player.sendMessage(new TextComponentString("Loaded."));
         } catch (NullPointerException e){
             this.player.sendMessage(new TextComponentString("Error occurred while loading data."));
         }
