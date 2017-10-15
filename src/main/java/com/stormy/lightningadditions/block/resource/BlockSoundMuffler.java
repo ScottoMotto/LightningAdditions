@@ -101,6 +101,7 @@ public class BlockSoundMuffler extends Block {
 
     //Custom Tooltip
     @Override
+    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack par1ItemStack, @Nullable World world, List par3List, ITooltipFlag par4) {
         if (KeyChecker.isHoldingShift()) {
             par3List.add(TextFormatting.LIGHT_PURPLE + TranslateUtils.toLocal("tooltip.block.noise_muffler.line1"));

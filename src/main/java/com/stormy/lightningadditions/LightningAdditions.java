@@ -71,6 +71,7 @@ public class LightningAdditions
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LALogger.log("LA Pre-Initialisation!");
+        ModNetworking.init();
         proxy.preInit(event);
 
         ModInformation.LOCATION = new File(event.getModConfigurationDirectory().getAbsolutePath() + "/" + ModInformation.MODID);
@@ -99,7 +100,6 @@ public class LightningAdditions
         ModItems.init();
         ModBlocks.init();
         ModRegistry.init();
-        ModNetworking.init();
 
         MinecraftForge.EVENT_BUS.register(new ModRegistry());
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
@@ -131,8 +131,6 @@ public class LightningAdditions
     {
         LALogger.log("LA Post-Initialisation!");
         proxy.postInit(event);
-
-        MinecraftForge.EVENT_BUS.register(new OreDictTooltipEvent()); //Shows OreDict tooltips
     }
 
     @Mod.EventHandler

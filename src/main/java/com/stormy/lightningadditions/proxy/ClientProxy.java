@@ -10,6 +10,7 @@
 
 package com.stormy.lightningadditions.proxy;
 
+import com.stormy.lightningadditions.block.ore.OreDictTooltipEvent;
 import com.stormy.lightningadditions.init.ModBlocks;
 import com.stormy.lightningadditions.init.ModItems;
 import com.stormy.lightningadditions.init.ModKeys;
@@ -31,6 +32,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -63,6 +65,7 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getFramebuffer().enableStencil();
 
         ModKeys.init();
+        MinecraftForge.EVENT_BUS.register(new OreDictTooltipEvent()); //Shows OreDict tooltips
     }
 
     @Override

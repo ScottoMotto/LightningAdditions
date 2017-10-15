@@ -15,6 +15,8 @@ package com.stormy.lightningadditions.block.ore;
 import com.stormy.lightningadditions.config.ConfigurationManagerLA;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
 import static com.stormy.lightninglib.lib.utils.StringHelper.ITALIC;
 import static com.stormy.lightninglib.lib.utils.StringHelper.LIGHT_GRAY;
 
+@SideOnly(Side.CLIENT)
 public class OreDictTooltipEvent {
 
     @SubscribeEvent

@@ -69,15 +69,6 @@ public class GuiDisplayCase extends GuiContainer{
         this.xSize = 176;
         this.ySize = 256;
 
-        this.translateX = te.getTileData().getDouble("tx");
-        this.translateY = te.getTileData().getDouble("ty");
-        this.translateZ = te.getTileData().getDouble("tz");
-        this.rotateX    = te.getTileData().getDouble("rx");
-        this.rotateY    = te.getTileData().getDouble("ry");
-        this.rotateZ    = te.getTileData().getDouble("rz");
-
-        this.scale      = te.getTileData().getDouble("s");
-
     }
 
     @Override
@@ -135,6 +126,15 @@ public class GuiDisplayCase extends GuiContainer{
         this.buttonList.add(buttonReset);
         this.buttonList.add(buttonSave);
         this.buttonList.add(buttonLoad);
+
+        this.translateX = te.getTileData().getDouble("tx");
+        this.translateY = te.getTileData().getDouble("ty");
+        this.translateZ = te.getTileData().getDouble("tz");
+        this.rotateX    = te.getTileData().getDouble("rx");
+        this.rotateY    = te.getTileData().getDouble("ry");
+        this.rotateZ    = te.getTileData().getDouble("rz");
+
+        this.scale      = te.getTileData().getDouble("s");
 
     }
 
@@ -279,6 +279,8 @@ public class GuiDisplayCase extends GuiContainer{
         this.fontRenderer.drawString(String.valueOf(df.format(scale)), 122, 152, 0x404040);
 
         renderTooltips(mouseX, mouseY);
+
+//        LALogger.info("TX: " + translateX + ", TY: " + translateY + ", TZ: " + translateZ);
 
     }
 

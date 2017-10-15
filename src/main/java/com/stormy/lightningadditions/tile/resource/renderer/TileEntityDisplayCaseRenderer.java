@@ -1,6 +1,7 @@
 package com.stormy.lightningadditions.tile.resource.renderer;
 
 import com.stormy.lightningadditions.tile.resource.TileEntityDisplayCase;
+import com.stormy.lightningadditions.utility.logger.LALogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -20,6 +21,8 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
                 stack.setCount(1);
                 entityItem.setEntityItemStack(stack);
                 entityItem.hoverStart = 0;
+
+//                LALogger.info(te.getTileData().toString());
 
                 if (!(stack.getItem() instanceof ItemBlock)) {
                     GlStateManager.pushMatrix();
@@ -76,6 +79,7 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
                 }
 
             }
+
         }
     }
 
