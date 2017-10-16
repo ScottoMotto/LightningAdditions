@@ -130,6 +130,8 @@ tile.display_case.name=Display Case
 #Config Categories
 config.category.atomicMagnet.title=Atomic Exertion Magnet
 config.category.atomicMagnet.desc=Configure how the Atomic Exertion Magnet functions.
+config.category.displayCase.title=Display Case
+config.category.displayCase.desc=Configure how the Display Case functions.
 
 #Configs
 config.atomicMagnetRange.title=Exertion Range
@@ -140,6 +142,8 @@ config.atomicMagnetParticles.title=Magnet particle effects
 config.atomicMagnetParticles.desc=Will the Magnet have particles?
 config.creativeTabSearchBar.title=Creative Tab Search Bar
 config.creativeTabSearchBar.desc=Should the creative tab have a search bar.
+config.enableDisplayEditing.title=Enable Display Case Display Editing
+config.enableDisplayEditing.desc=Should the Display Case have custom display editing?
 
 #Utils
 calculations.calc=Calculator

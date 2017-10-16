@@ -12,28 +12,23 @@
 
 package com.stormy.lightningadditions.client.gui.resource;
 
+import com.stormy.lightningadditions.config.ConfigurationManagerLA;
 import com.stormy.lightningadditions.container.resource.ContainerDisplayCase;
 import com.stormy.lightningadditions.init.ModNetworking;
 import com.stormy.lightningadditions.network.messages.MessageDisplayCase;
 import com.stormy.lightningadditions.reference.ModInformation;
 import com.stormy.lightningadditions.tile.resource.TileEntityDisplayCase;
 import com.stormy.lightningadditions.utility.GuiUtils;
-import com.stormy.lightningadditions.utility.logger.LALogger;
 import com.stormy.lightninglib.lib.utils.KeyChecker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -61,13 +56,18 @@ public class GuiDisplayCase extends GuiContainer{
 
     public GuiDisplayCase(IInventory playerInv, TileEntityDisplayCase te, EntityPlayer player) {
         super(new ContainerDisplayCase(playerInv, te));
+        if (!ConfigurationManagerLA.enableDisplayEditing) {
+            texture = ModInformation.MODID + ":textures/gui/display_case_noediting.png";
+            this.xSize = 176;
+            this.ySize = 113;
+        } else {
+            this.xSize = 176;
+            this.ySize = 256;
+        }
 
         this.playerInv = playerInv;
         this.player = player;
         this.te = te;
-
-        this.xSize = 176;
-        this.ySize = 256;
 
     }
 
@@ -75,68 +75,68 @@ public class GuiDisplayCase extends GuiContainer{
     public void initGui() {
         super.initGui();
 
-        //Translate
-        //T - X
-        GuiButton buttonTXN = new GuiButton(0, getGuiLeft() + 10, getGuiTop() + 40, 20, 20, "-");
-        GuiButton buttonTXP = new GuiButton(1, getGuiLeft() + 60, getGuiTop() + 40, 20, 20, "+");
-        //T - Y
-        GuiButton buttonTYN = new GuiButton(2, getGuiLeft() + 10, getGuiTop() + 80, 20, 20, "-");
-        GuiButton buttonTYP = new GuiButton(3, getGuiLeft() + 60, getGuiTop() + 80, 20, 20, "+");
-        //T - Z
-        GuiButton buttonTZN = new GuiButton(4, getGuiLeft() + 10, getGuiTop() + 120, 20, 20, "-");
-        GuiButton buttonTZP = new GuiButton(5, getGuiLeft() + 60, getGuiTop() + 120, 20, 20, "+");
+        if (ConfigurationManagerLA.enableDisplayEditing) {
+            //Translate
+            //T - X
+            GuiButton buttonTXN = new GuiButton(0, getGuiLeft() + 10, getGuiTop() + 40, 20, 20, "-");
+            GuiButton buttonTXP = new GuiButton(1, getGuiLeft() + 60, getGuiTop() + 40, 20, 20, "+");
+            //T - Y
+            GuiButton buttonTYN = new GuiButton(2, getGuiLeft() + 10, getGuiTop() + 80, 20, 20, "-");
+            GuiButton buttonTYP = new GuiButton(3, getGuiLeft() + 60, getGuiTop() + 80, 20, 20, "+");
+            //T - Z
+            GuiButton buttonTZN = new GuiButton(4, getGuiLeft() + 10, getGuiTop() + 120, 20, 20, "-");
+            GuiButton buttonTZP = new GuiButton(5, getGuiLeft() + 60, getGuiTop() + 120, 20, 20, "+");
 
-        //Rotate
-        //T - X
-        GuiButton buttonRXN = new GuiButton(6, getGuiLeft() + 95, getGuiTop() + 40, 20, 20, "-");
-        GuiButton buttonRXP = new GuiButton(7, getGuiLeft() + 145, getGuiTop() + 40, 20, 20, "+");
-        //T - Y
-        GuiButton buttonRYN = new GuiButton(8, getGuiLeft() + 95, getGuiTop() + 80, 20, 20, "-");
-        GuiButton buttonRYP = new GuiButton(9, getGuiLeft() + 145, getGuiTop() + 80, 20, 20, "+");
-        //T - Z
-        GuiButton buttonRZN = new GuiButton(10, getGuiLeft() + 95, getGuiTop() + 120, 20, 20, "-");
-        GuiButton buttonRZP = new GuiButton(11, getGuiLeft() + 145, getGuiTop() + 120, 20, 20, "+");
+            //Rotate
+            //T - X
+            GuiButton buttonRXN = new GuiButton(6, getGuiLeft() + 95, getGuiTop() + 40, 20, 20, "-");
+            GuiButton buttonRXP = new GuiButton(7, getGuiLeft() + 145, getGuiTop() + 40, 20, 20, "+");
+            //T - Y
+            GuiButton buttonRYN = new GuiButton(8, getGuiLeft() + 95, getGuiTop() + 80, 20, 20, "-");
+            GuiButton buttonRYP = new GuiButton(9, getGuiLeft() + 145, getGuiTop() + 80, 20, 20, "+");
+            //T - Z
+            GuiButton buttonRZN = new GuiButton(10, getGuiLeft() + 95, getGuiTop() + 120, 20, 20, "-");
+            GuiButton buttonRZP = new GuiButton(11, getGuiLeft() + 145, getGuiTop() + 120, 20, 20, "+");
 
-        //Scale
-        GuiButton buttonSN = new GuiButton(12, getGuiLeft() + 95, getGuiTop() + 147, 20, 20, "-");
-        GuiButton buttonSP = new GuiButton(13, getGuiLeft() + 145, getGuiTop() + 147, 20, 20, "+");
+            //Scale
+            GuiButton buttonSN = new GuiButton(12, getGuiLeft() + 95, getGuiTop() + 147, 20, 20, "-");
+            GuiButton buttonSP = new GuiButton(13, getGuiLeft() + 145, getGuiTop() + 147, 20, 20, "+");
 
-        //Misc
-        GuiButton buttonReset = new GuiButton(14, getGuiLeft() + 10, getGuiTop() + 147, 15, 20, "R");
-        GuiButton buttonSave = new GuiButton(15, getGuiLeft() + 28, getGuiTop() + 147, 15, 20, "C");
-        GuiButton buttonLoad = new GuiButton(16, getGuiLeft() + 46, getGuiTop() + 147, 15, 20, "P");
+            //Misc
+            GuiButton buttonReset = new GuiButton(14, getGuiLeft() + 10, getGuiTop() + 147, 15, 20, "R");
+            GuiButton buttonSave = new GuiButton(15, getGuiLeft() + 28, getGuiTop() + 147, 15, 20, "C");
+            GuiButton buttonLoad = new GuiButton(16, getGuiLeft() + 46, getGuiTop() + 147, 15, 20, "P");
 
-        this.buttonList.add(buttonTXP);
-        this.buttonList.add(buttonTXN);
-        this.buttonList.add(buttonTYP);
-        this.buttonList.add(buttonTYN);
-        this.buttonList.add(buttonTZP);
-        this.buttonList.add(buttonTZN);
+            this.buttonList.add(buttonTXP);
+            this.buttonList.add(buttonTXN);
+            this.buttonList.add(buttonTYP);
+            this.buttonList.add(buttonTYN);
+            this.buttonList.add(buttonTZP);
+            this.buttonList.add(buttonTZN);
 
-        this.buttonList.add(buttonRXP);
-        this.buttonList.add(buttonRXN);
-        this.buttonList.add(buttonRYP);
-        this.buttonList.add(buttonRYN);
-        this.buttonList.add(buttonRZP);
-        this.buttonList.add(buttonRZN);
+            this.buttonList.add(buttonRXP);
+            this.buttonList.add(buttonRXN);
+            this.buttonList.add(buttonRYP);
+            this.buttonList.add(buttonRYN);
+            this.buttonList.add(buttonRZP);
+            this.buttonList.add(buttonRZN);
 
-        this.buttonList.add(buttonSN);
-        this.buttonList.add(buttonSP);
+            this.buttonList.add(buttonSN);
+            this.buttonList.add(buttonSP);
 
-        this.buttonList.add(buttonReset);
-        this.buttonList.add(buttonSave);
-        this.buttonList.add(buttonLoad);
+            this.buttonList.add(buttonReset);
+            this.buttonList.add(buttonSave);
+            this.buttonList.add(buttonLoad);
 
-        LALogger.info(te.getTileData().toString());
+            this.translateX = te.getTileData().getDouble("tx");
+            this.translateY = te.getTileData().getDouble("ty");
+            this.translateZ = te.getTileData().getDouble("tz");
+            this.rotateX = te.getTileData().getDouble("rx");
+            this.rotateY = te.getTileData().getDouble("ry");
+            this.rotateZ = te.getTileData().getDouble("rz");
 
-        this.translateX = te.getTileData().getDouble("tx");
-        this.translateY = te.getTileData().getDouble("ty");
-        this.translateZ = te.getTileData().getDouble("tz");
-        this.rotateX    = te.getTileData().getDouble("rx");
-        this.rotateY    = te.getTileData().getDouble("ry");
-        this.rotateZ    = te.getTileData().getDouble("rz");
-
-        this.scale      = te.getTileData().getDouble("s");
+            this.scale = te.getTileData().getDouble("s");
+        }
 
     }
 
@@ -254,35 +254,36 @@ public class GuiDisplayCase extends GuiContainer{
         int x = GuiUtils.getXCenter(s, this.fontRenderer, xSize);
         this.fontRenderer.drawString(s, x, 5, 0x404040);
 
-        //Translate
-        //X
-        this.fontRenderer.drawString("Translate X", 10, 30, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(translateX)), 37, 45, 0x404040);
-        //Y
-        this.fontRenderer.drawString("Translate Y", 10, 70, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(translateY)), 37, 85, 0x404040);
-        //Z
-        this.fontRenderer.drawString("Translate Z", 10, 110, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(translateZ)), 37, 125, 0x404040);
+        if (ConfigurationManagerLA.enableDisplayEditing) {
+            //Translate
+            //X
+            this.fontRenderer.drawString("Translate X", 10, 30, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(translateX)), 37, 45, 0x404040);
+            //Y
+            this.fontRenderer.drawString("Translate Y", 10, 70, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(translateY)), 37, 85, 0x404040);
+            //Z
+            this.fontRenderer.drawString("Translate Z", 10, 110, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(translateZ)), 37, 125, 0x404040);
 
-        //Rotate
-        //X
-        this.fontRenderer.drawString("Rotate X", 110, 30, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(rotateX)), 122, 45, 0x404040);
-        //Y
-        this.fontRenderer.drawString("Rotate Y", 110, 70, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(rotateY)), 122, 85, 0x404040);
-        //Z
-        this.fontRenderer.drawString("Rotate Z", 110, 110, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(rotateZ)), 122, 125, 0x404040);
+            //Rotate
+            //X
+            this.fontRenderer.drawString("Rotate X", 110, 30, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(rotateX)), 122, 45, 0x404040);
+            //Y
+            this.fontRenderer.drawString("Rotate Y", 110, 70, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(rotateY)), 122, 85, 0x404040);
+            //Z
+            this.fontRenderer.drawString("Rotate Z", 110, 110, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(rotateZ)), 122, 125, 0x404040);
 
-        //Scale
-        this.fontRenderer.drawString("Scale", 65, 152, 0x404040);
-        this.fontRenderer.drawString(String.valueOf(df.format(scale)), 122, 152, 0x404040);
+            //Scale
+            this.fontRenderer.drawString("Scale", 65, 152, 0x404040);
+            this.fontRenderer.drawString(String.valueOf(df.format(scale)), 122, 152, 0x404040);
+
+        }
 
         renderTooltips(mouseX, mouseY);
-
-//        LALogger.info("TX: " + translateX + ", TY: " + translateY + ", TZ: " + translateZ);
 
     }
 
@@ -342,35 +343,46 @@ public class GuiDisplayCase extends GuiContainer{
 
     private void renderTooltips(int mouseX, int mouseY){
         Minecraft mc = Minecraft.getMinecraft();
-        if (this.isMouseOver(mouseX, mouseY, 10, 147, 25, 167)){
-            List<String> text = new ArrayList<String>();
-            text.add("Reset");
-            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
-        } else if (this.isMouseOver(mouseX, mouseY, 28, 147, 43, 167)){
-            List<String> text = new ArrayList<String>();
-            text.add("Copy");
-            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
-        } else if (this.isMouseOver(mouseX, mouseY, 46, 147, 61, 167)){
-            List<String> text = new ArrayList<String>();
-            text.add("Paste");
-            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
-        } else if (this.isMouseOver(mouseX, mouseY, 150, 6, 165, 21)){
-            List<String> text = new ArrayList<String>();
-            text.add(TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Info");
-            text.add("Put item to display in the slot at the top left.");
-            text.add("");
-            text.add("Translate moves the item along an axis.");
-            text.add("Rotate spins the item along an axis.");
-            text.add("Scale changes the size of the item.");
-            text.add("");
-            text.add("Click 'Reset' (R) to reset the settings.");
-            text.add("Click 'Copy' (C) to copy settings to the clipboard.");
-            text.add("Click 'Paste' (P) to paste setting from the clipboard.");
-            text.add("");
-            text.add(TextFormatting.UNDERLINE + "Keyboard Control");
-            text.add("Shift - Half Increments");
-            text.add("Ctrl - Single Increments");
-            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+        if (ConfigurationManagerLA.enableDisplayEditing) {
+            if (this.isMouseOver(mouseX, mouseY, 10, 147, 25, 167)) {
+                List<String> text = new ArrayList<String>();
+                text.add("Reset");
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+            } else if (this.isMouseOver(mouseX, mouseY, 28, 147, 43, 167)) {
+                List<String> text = new ArrayList<String>();
+                text.add("Copy");
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+            } else if (this.isMouseOver(mouseX, mouseY, 46, 147, 61, 167)) {
+                List<String> text = new ArrayList<String>();
+                text.add("Paste");
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+            } else if (this.isMouseOver(mouseX, mouseY, 150, 6, 165, 21)) {
+                List<String> text = new ArrayList<String>();
+                text.add(TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Info");
+                text.add("Put item to display in the slot at the top left.");
+                text.add("");
+                text.add("Translate moves the item along an axis.");
+                text.add("Rotate spins the item along an axis.");
+                text.add("Scale changes the size of the item.");
+                text.add("");
+                text.add("Click 'Reset' (R) to reset the settings.");
+                text.add("Click 'Copy' (C) to copy settings to the clipboard.");
+                text.add("Click 'Paste' (P) to paste setting from the clipboard.");
+                text.add("");
+                text.add(TextFormatting.UNDERLINE + "Keyboard Control");
+                text.add("Shift - Half Increments");
+                text.add("Ctrl - Single Increments");
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+            }
+        } else {
+            if (this.isMouseOver(mouseX, mouseY, 150, 6, 165, 21)) {
+                List<String> text = new ArrayList<String>();
+                text.add(TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Info");
+                text.add("Put item to display in the slot at the top left.");
+                text.add("");
+                text.add("Display editing can be enabled in the config.");
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(text, mouseX - ((this.width - this.xSize) / 2), mouseY - ((this.height - this.ySize) / 2), mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
+            }
         }
     }
 

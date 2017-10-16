@@ -61,6 +61,8 @@ public class ConfigurationManagerLA
     public static int atomicMagnetRange;
     public static float atomicMagnetPullSpeed;
 
+    public static boolean enableDisplayEditing;
+
     public ConfigurationManagerLA(FMLPreInitializationEvent event)
     {
         options_location = new File(ModInformation.LOCATION + "/options.cfg");
@@ -98,6 +100,8 @@ public class ConfigurationManagerLA
         atomicMagnetRange = config.getInt(TranslateUtils.toLocal("config.atomicMagnetRange.title"), TranslateUtils.toLocal("config.category.atomicMagnet.title"), 9, 1, Integer.MAX_VALUE, TranslateUtils.toLocal("config.atomicMagnetRange.desc"));
         atomicMagnetPullSpeed = config.getFloat(TranslateUtils.toLocal("config.atomicMagnetPullSpeed.title"), TranslateUtils.toLocal("config.category.atomicMagnet.title"), 0.035F, 0, Float.MAX_VALUE, TranslateUtils.toLocal("config.atomicMagnetPullSpeed.desc"));
         atomicMagnetParticles = config.getBoolean(TranslateUtils.toLocal("config.atomicMagnetParticles.title"), TranslateUtils.toLocal("config.category.atomicMagnet.title"), true, TranslateUtils.toLocal("config.atomicMagnetParticles.desc"));
+            //Display Case
+        enableDisplayEditing = config.getBoolean(TranslateUtils.toLocal("config.enableDisplayEditing.title"), TranslateUtils.toLocal("config.category.displayCase.title"), true, TranslateUtils.toLocal("config.enableDisplayEditing.desc"));
 
         //Compat
         supportForestry = config.get(COMPATIBILITY.toString(), "supportForestry", true, "Support for Forestry ores").getBoolean(true);
