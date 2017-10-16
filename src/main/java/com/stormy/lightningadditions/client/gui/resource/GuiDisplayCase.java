@@ -127,6 +127,8 @@ public class GuiDisplayCase extends GuiContainer{
         this.buttonList.add(buttonSave);
         this.buttonList.add(buttonLoad);
 
+        LALogger.info(te.getTileData().toString());
+
         this.translateX = te.getTileData().getDouble("tx");
         this.translateY = te.getTileData().getDouble("ty");
         this.translateZ = te.getTileData().getDouble("tz");

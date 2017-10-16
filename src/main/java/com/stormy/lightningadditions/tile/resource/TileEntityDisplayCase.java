@@ -1,6 +1,7 @@
 package com.stormy.lightningadditions.tile.resource;
 
 import com.stormy.lightningadditions.tile.base.LATile;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -232,4 +233,17 @@ public class TileEntityDisplayCase extends LATile implements IInventory{
         return this.writeToNBT(new NBTTagCompound());
     }
 
+    @Override
+    public void markDirty() {
+        super.markDirty();
+
+        if(this.world != null){
+            IBlockState state = getWorld().getBlockState(this.pos);
+
+            if(state != null){
+                state.getBlock().updateTick(this.world, this.pos, state, this.world.rand);
+                this.world.notifyBlockUpdate(pos, state, state, 3);
+            }
+        }
+    }
 }
