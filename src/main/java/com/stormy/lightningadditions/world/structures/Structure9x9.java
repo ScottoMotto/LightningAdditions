@@ -81,7 +81,7 @@ public class Structure9x9 /*implements IWorldGenerator*/{
 
         template.addBlocksToWorld(world, pos.add(vecOffset), settings);
 
-        if (!world.isAirBlock(pos.offset(chestOrientation).down())) world.setBlockState(pos.offset(chestOrientation), Blocks.WOODEN_PRESSURE_PLATE.getDefaultState());
+        if (!world.isAirBlock(pos.offset(chestOrientation.getOpposite()).down())) world.setBlockState(pos.offset(chestOrientation.getOpposite()), Blocks.WOODEN_PRESSURE_PLATE.getDefaultState());
 
         Map<BlockPos, String> dataBlocks = template.getDataBlocks(pos, settings);
         for (Map.Entry<BlockPos, String> entry : dataBlocks.entrySet()) {
