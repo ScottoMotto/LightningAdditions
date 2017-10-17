@@ -70,6 +70,7 @@ tooltip.item.lauren_january.line2="Operation_#050117b, Resignee: Stormy"
 tooltip.block.redstone_clock.line1=Your more advanced version of a classic!
 tooltip.block.crop_comparator.line1=Ma! The block is watching the crops again!
 tooltip.block.display_case.line1=Ooh! Fancy.
+tooltip.block.compressed_base.line1=Direwolf20's favorite structure!
 
 #Chats
 chat.item.atomic_magnet.enabled=Exertion Mode now active.
@@ -126,6 +127,7 @@ tile.redstone_clock.name=Redstone Clock
 tile.particle_accelerator.name=Particle Accelerator
 tile.crop_comparator.name=Crop Comparator
 tile.display_case.name=Display Case
+tile.compressed_base.name=Nonuple Compressed Base
 
 #Config Categories
 config.category.atomicMagnet.title=Atomic Exertion Magnet

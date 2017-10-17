@@ -93,6 +93,7 @@ public class ModRegistry {
         registerBlock(ModBlocks.particle_accellerator);
         registerBlock(ModBlocks.crop_comparator);
         registerBlock(ModBlocks.display_case);
+        registerBlock(ModBlocks.compressed_base);
 
         //Generators
         registerBlock(ModBlocks.solar_generator);
@@ -181,6 +182,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.ender_hopper);
         registerBlockRender(ModBlocks.crop_comparator);
         registerBlockRender(ModBlocks.display_case);
+        registerBlockRender(ModBlocks.compressed_base);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);
