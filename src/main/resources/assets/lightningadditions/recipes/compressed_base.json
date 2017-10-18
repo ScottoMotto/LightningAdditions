@@ -1,0 +1,93 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YAY",
+    "BXB",
+    "YZY"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:cobblestone"
+    },
+    "Y": {
+      "item": "minecraft:chest"
+    },
+    "Z": [
+      {
+        "item": "minecraft:bed",
+        "data": 0
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 1
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 2
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 3
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 4
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 5
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 6
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 7
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 8
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 9
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 10
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 11
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 12
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 13
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 14
+      },
+      {
+        "item": "minecraft:bed",
+        "data": 15
+      }
+    ],
+    "A": {
+      "item": "minecraft:coal",
+      "data": 0
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "lightningadditions:compressed_base",
+    "count": 1
+  }
+}

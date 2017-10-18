@@ -1,6 +1,5 @@
 package com.stormy.lightningadditions.block.resource;
 
-import com.stormy.lightningadditions.init.ModBlocks;
 import com.stormy.lightningadditions.utility.logger.LALogger;
 import com.stormy.lightningadditions.world.structures.Structure9x9;
 import com.stormy.lightningadditions.world.structures.Structure9x9.Directions;
