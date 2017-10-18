@@ -1,6 +1,8 @@
 package com.stormy.lightningadditions.world.structures;
 
 import com.stormy.lightningadditions.reference.ModInformation;
+import com.stormy.lightningadditions.utility.logger.LALogger;
+import javafx.animation.RotateTransition;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,7 +26,7 @@ import static net.minecraft.util.Rotation.*;
 public class Structure9x9 /*implements IWorldGenerator*/{
 
     public static final ResourceLocation STRUCTURE = new ResourceLocation(ModInformation.MODID, "9x9");
-    public static final ResourceLocation STRUCTURE_EXTEND = new ResourceLocation(ModInformation.MODID, "9x9extend");
+    public static final ResourceLocation STRUCTURE_EXTEND = new ResourceLocation(ModInformation.MODID, "9x9p2");
     public static final ResourceLocation LOOT = new ResourceLocation(ModInformation.MODID, "9x9_loot");
 
     //Code for world gen
@@ -93,6 +95,10 @@ public class Structure9x9 /*implements IWorldGenerator*/{
         Rotation rotationExtend2 = Rotation.NONE;
         Rotation rotationExtend3 = Rotation.NONE;
         Rotation rotationExtend4 = Rotation.NONE;
+        Vec3i vecOffset1 = new Vec3i(0,0,0);
+        Vec3i vecOffset2 = new Vec3i(0,0,0);
+        Vec3i vecOffset3 = new Vec3i(0,0,0);
+        Vec3i vecOffset4 = new Vec3i(0,0,0);
         int offsetAmount = 20;
 
         switch (direction) {
@@ -102,148 +108,116 @@ public class Structure9x9 /*implements IWorldGenerator*/{
                 vecConnectionOffset2 = new Vec3i(0, 0, 0);
                 break;
             case NORTH:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
                 rotationExtend1 = Rotation.NONE;
-                switch (rotation) {
-                    default:
-                    case NONE:
-                        vecOffset = new Vec3i(4, 0, -4);
-                        break;
-                    case CLOCKWISE_90:
-                        vecOffset = new Vec3i(4, 0, 4);
-                        break;
-                    case CLOCKWISE_180:
-                        vecOffset = new Vec3i(-4, 0, 4);
-                        break;
-                    case COUNTERCLOCKWISE_90:
-                        vecOffset = new Vec3i(-4, 0, -4);
-                        break;
-                }
                 break;
             case SOUTH:
-                vecConnectionOffset = new Vec3i(0, 0, offsetAmount);
+                vecConnectionOffset = new Vec3i(4, 0, offsetAmount - 4);
                 rotationExtend1 = Rotation.CLOCKWISE_180;
-                switch (rotation) {
-                    default:
-                    case NONE:
-                        vecOffset = new Vec3i(4, 0, -4);
-                        break;
-                    case CLOCKWISE_90:
-                        vecOffset = new Vec3i(4, 0, 4);
-                        break;
-                    case CLOCKWISE_180:
-                        vecOffset = new Vec3i(-4, 0, 4);
-                        break;
-                    case COUNTERCLOCKWISE_90:
-                        vecOffset = new Vec3i(-4, 0, -4);
-                        break;
-                }
                 break;
             case EAST:
-                vecConnectionOffset = new Vec3i(offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(offsetAmount - 4, 0, -4);
                 rotationExtend1 = Rotation.CLOCKWISE_90;
-                switch (rotation) {
-                    default:
-                    case NONE:
-                        vecOffset = new Vec3i(4, 0, -4);
-                        break;
-                    case CLOCKWISE_90:
-                        vecOffset = new Vec3i(4, 0, 4);
-                        break;
-                    case CLOCKWISE_180:
-                        vecOffset = new Vec3i(-4, 0, 4);
-                        break;
-                    case COUNTERCLOCKWISE_90:
-                        vecOffset = new Vec3i(-4, 0, -4);
-                        break;
-                }
                 break;
             case WEST:
-                vecConnectionOffset = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-offsetAmount + 4, 0, 4);
                 rotationExtend1 = Rotation.COUNTERCLOCKWISE_90;
-                switch (rotation) {
-                    default:
-                    case NONE:
-                        vecOffset = new Vec3i(4, 0, -4);
-                        break;
-                    case CLOCKWISE_90:
-                        vecOffset = new Vec3i(4, 0, 4);
-                        break;
-                    case CLOCKWISE_180:
-                        vecOffset = new Vec3i(-4, 0, 4);
-                        break;
-                    case COUNTERCLOCKWISE_90:
-                        vecOffset = new Vec3i(-4, 0, -4);
-                        break;
-                }
                 break;
             case NORTH_SOUTH:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(0, 0, offsetAmount);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(4, 0, offsetAmount - 4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.CLOCKWISE_180;
                 break;
             case NORTH_EAST:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(offsetAmount - 4, 0, -4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.CLOCKWISE_90;
                 break;
             case NORTH_WEST:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.COUNTERCLOCKWISE_90;
                 break;
             case SOUTH_EAST:
-                vecConnectionOffset = new Vec3i(0, 0, offsetAmount);
-                vecConnectionOffset2 = new Vec3i(offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(4, 0, offsetAmount - 4);
+                vecConnectionOffset2 = new Vec3i(offsetAmount - 4, 0, -4);
+                rotationExtend1 = Rotation.CLOCKWISE_180;
+                rotationExtend2 = Rotation.CLOCKWISE_90;
                 break;
             case SOUTH_WEST:
-                vecConnectionOffset = new Vec3i(0, 0, offsetAmount);
-                vecConnectionOffset2 = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(4, 0, offsetAmount - 4);
+                vecConnectionOffset2 = new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.CLOCKWISE_180;
+                rotationExtend2 = Rotation.COUNTERCLOCKWISE_90;
                 break;
             case EAST_WEST:
-                vecConnectionOffset2 = new Vec3i(offsetAmount, 0, 0);
-                vecConnectionOffset = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset2 = new Vec3i(offsetAmount - 4, 0, -4);
+                vecConnectionOffset = new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.CLOCKWISE_90;
+                rotationExtend2 = Rotation.COUNTERCLOCKWISE_90;
                 break;
             case NORTH_SOUTH_EAST:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(0, 0, offsetAmount);
-                vecConnectionOffset3 = new Vec3i(offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(4, 0, offsetAmount - 4);
+                vecConnectionOffset3 = new Vec3i(offsetAmount - 4, 0, -4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.CLOCKWISE_180;
+                rotationExtend3 = Rotation.CLOCKWISE_90;
                 break;
             case NORTH_SOUTH_WEST:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(0, 0, offsetAmount);
-                vecConnectionOffset3 = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(4, 0, offsetAmount - 4);
+                vecConnectionOffset3 = new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.CLOCKWISE_180;
+                rotationExtend3 = Rotation.COUNTERCLOCKWISE_90;
                 break;
             case NORTH_EAST_WEST:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(offsetAmount, 0, 0);
-                vecConnectionOffset3 = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(offsetAmount - 4, 0, -4);
+                vecConnectionOffset3 = new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.CLOCKWISE_90;
+                rotationExtend3 = Rotation.COUNTERCLOCKWISE_90;
                 break;
             case SOUTH_EAST_WEST:
-                vecConnectionOffset = new Vec3i(0, 0, offsetAmount);
-                vecConnectionOffset2 = new Vec3i(offsetAmount, 0, 0);
-                vecConnectionOffset3 = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(4, 0, offsetAmount - 4);
+                vecConnectionOffset2 = new Vec3i(offsetAmount - 4, 0, -4);
+                vecConnectionOffset3 = new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.CLOCKWISE_180;
+                rotationExtend2 = Rotation.CLOCKWISE_90;
+                rotationExtend3 = Rotation.COUNTERCLOCKWISE_90;
                 break;
             case ALL:
-                vecConnectionOffset = new Vec3i(0, 0, -offsetAmount);
-                vecConnectionOffset2 = new Vec3i(0, 0, offsetAmount);
-                vecConnectionOffset3 = new Vec3i(offsetAmount, 0, 0);
-                vecConnectionOffset4 = new Vec3i(-offsetAmount, 0, 0);
+                vecConnectionOffset = new Vec3i(-4, 0, -offsetAmount + 4);
+                vecConnectionOffset2 = new Vec3i(4, 0, offsetAmount - 4);
+                vecConnectionOffset3 =  new Vec3i(offsetAmount - 4, 0, -4);
+                vecConnectionOffset4 =  new Vec3i(-offsetAmount + 4, 0, 4);
+                rotationExtend1 = Rotation.NONE;
+                rotationExtend2 = Rotation.CLOCKWISE_180;
+                rotationExtend3 = Rotation.CLOCKWISE_90;
+                rotationExtend4 = Rotation.COUNTERCLOCKWISE_90;
                 break;
         }
 
         if (!vecConnectionOffset.equals(new Vec3i(0, 0, 0))) {
             settingsExtend.setRotation(rotationExtend1);
-            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset).add(vecOffset), settingsExtend);
+            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset), settingsExtend);
         }
         if (!vecConnectionOffset2.equals(new Vec3i(0, 0, 0))) {
             settingsExtend.setRotation(rotationExtend2);
-            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset2).add(vecOffset), settingsExtend);
+            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset2), settingsExtend);
         }
         if (!vecConnectionOffset3.equals(new Vec3i(0, 0, 0))) {
             settingsExtend.setRotation(rotationExtend3);
-            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset3).add(vecOffset), settingsExtend);
+            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset3), settingsExtend);
         }
         if (!vecConnectionOffset4.equals(new Vec3i(0, 0, 0))) {
             settingsExtend.setRotation(rotationExtend4);
-            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset4).add(vecOffset), settingsExtend);
+            templateExtend.addBlocksToWorld(world, pos.add(vecConnectionOffset4), settingsExtend);
         }
 
         Map<BlockPos, String> dataBlocks = template.getDataBlocks(pos, settings);
