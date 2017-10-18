@@ -11,6 +11,7 @@
 package com.stormy.lightningadditions;
 
 import com.stormy.lightningadditions.block.ore.OreDictTooltipEvent;
+import com.stormy.lightningadditions.block.resource.BlockSpecialChair;
 import com.stormy.lightningadditions.config.ConfigurationManagerLA;
 import com.stormy.lightningadditions.crafting.RegistryParticleAccelerator;
 import com.stormy.lightningadditions.feature.debug.CommandReloadPARecipes;
@@ -30,6 +31,7 @@ import com.stormy.lightningadditions.utility.xpshare.CPacketRequest;
 import com.stormy.lightningadditions.utility.xpshare.SPacketUpdate;
 import com.stormy.lightningadditions.world.WorldGen;
 import com.stormy.lightningadditions.world.jsonhelper.JsonLoader;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -41,6 +43,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -113,6 +116,9 @@ public class LightningAdditions
         LALogger.log("LA Initialisation!");
         proxy.registerRenders();
         proxy.init(event);
+
+        { EntityRegistry.registerModEntity(new ResourceLocation(ModInformation.MODID, "entity_sitting"),
+                BlockSpecialChair.EntitySitting.class, "entity_sitting", 0, LightningAdditions.INSTANCE, 256, 20, false); }
 
         ModOreDict.registerOres();
 

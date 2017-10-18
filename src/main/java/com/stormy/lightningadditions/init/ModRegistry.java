@@ -94,6 +94,7 @@ public class ModRegistry {
         registerBlock(ModBlocks.crop_comparator);
         registerBlock(ModBlocks.display_case);
         registerBlock(ModBlocks.compressed_base);
+        registerBlock(ModBlocks.special_chair);
 
         //Generators
         registerBlock(ModBlocks.solar_generator);
@@ -183,6 +184,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.crop_comparator);
         registerBlockRender(ModBlocks.display_case);
         registerBlockRender(ModBlocks.compressed_base);
+        registerBlockRender(ModBlocks.special_chair);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);

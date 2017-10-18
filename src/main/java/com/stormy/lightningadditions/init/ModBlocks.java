@@ -52,6 +52,7 @@ public class ModBlocks
     public static Block crop_comparator;
     public static Block display_case;
     public static Block compressed_base;
+    public static Block special_chair;
 
     //Generators
     public static Block solar_generator;
@@ -106,6 +107,7 @@ public class ModBlocks
         crop_comparator = new BlockCropComparator().setUnlocalizedName("crop_comparator").setRegistryName("crop_comparator").setCreativeTab(CreativeTabLA.LA_TAB);
         display_case = new BlockDisplayCase().setUnlocalizedName("display_case").setRegistryName("display_case").setCreativeTab(CreativeTabLA.LA_TAB);
         compressed_base = new BlockNonupleCompressedBase().setUnlocalizedName("compressed_base").setRegistryName("compressed_base").setCreativeTab(CreativeTabLA.LA_TAB);
+        special_chair = new BlockSpecialChair().setUnlocalizedName("special_chair").setRegistryName("special_chair").setCreativeTab(CreativeTabLA.LA_TAB);
 
         //Generators
         solar_generator = new BlockSolarGenerator().setUnlocalizedName("solar_generator").setRegistryName("solar_generator").setCreativeTab(CreativeTabLA.LA_TAB);
