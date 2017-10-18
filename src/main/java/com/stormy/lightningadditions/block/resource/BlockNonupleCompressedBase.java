@@ -187,9 +187,6 @@ public class BlockNonupleCompressedBase extends Block {
                 directions = Directions.WEST;
             }
 
-            LALogger.info(directions.toString());
-
-//            worldIn.setBlockToAir(pos);
             Structure9x9.generateStructure((WorldServer) worldIn, pos, new Random(), rotation, chestOrientation, directions);
             playerIn.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0f, 1.0f);
 
