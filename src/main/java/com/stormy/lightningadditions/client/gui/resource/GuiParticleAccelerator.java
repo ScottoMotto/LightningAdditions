@@ -38,7 +38,6 @@ public class GuiParticleAccelerator extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        this.drawDefaultBackground();
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         this.mc.getTextureManager().bindTexture(TEXTURE);
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
@@ -61,6 +60,13 @@ public class GuiParticleAccelerator extends GuiContainer {
         this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 75, 4210752);
 
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.func_191948_b(mouseX, mouseY);
     }
 
     private int getCookProgressScaled(int pixels)

@@ -71,6 +71,7 @@ public class LightningAdditions
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LALogger.log("LA Pre-Initialisation!");
+        ModNetworking.init();
         proxy.preInit(event);
 
         ModInformation.LOCATION = new File(event.getModConfigurationDirectory().getAbsolutePath() + "/" + ModInformation.MODID);
@@ -87,7 +88,7 @@ public class LightningAdditions
         ModDimensions.init(); //Dimensions
 
         //XP Network Sharing
-        network = NetworkRegistry.INSTANCE.newSimpleChannel(ModInformation.MODID);
+        network = ModNetworking.INSTANCE;
         network.registerMessage(new SPacketUpdate.Handler(), SPacketUpdate.class, 0, Side.CLIENT);
         network.registerMessage(new CPacketRequest.Handler(), CPacketRequest.class, 1, Side.SERVER);
 
@@ -104,8 +105,6 @@ public class LightningAdditions
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ModSounds());
 
-        ModOreDict.registerOres();
-
     }
 
 
@@ -114,6 +113,8 @@ public class LightningAdditions
         LALogger.log("LA Initialisation!");
         proxy.registerRenders();
         proxy.init(event);
+
+        ModOreDict.registerOres();
 
         ModRecipes.init();
         RegistryParticleAccelerator.instance().registerRecipes();
@@ -130,8 +131,6 @@ public class LightningAdditions
     {
         LALogger.log("LA Post-Initialisation!");
         proxy.postInit(event);
-
-        MinecraftForge.EVENT_BUS.register(new OreDictTooltipEvent()); //Shows OreDict tooltips
     }
 
     @Mod.EventHandler

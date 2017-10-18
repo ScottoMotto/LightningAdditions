@@ -38,6 +38,8 @@ public class TileEntityFuelGenerator extends TileEntityBaseGenerator{
     private int cooldown;
     public int maxCooldown;
 
+    public ItemStack burningStack;
+
     public TileEntityFuelGenerator(){
         super(NonNullList.withSize(1, ItemStack.EMPTY), maxExtract, maxRF);
     }
@@ -128,6 +130,7 @@ public class TileEntityFuelGenerator extends TileEntityBaseGenerator{
                                 if (stack.getItem().getContainerItem() != null){
                                     this.setInventorySlotContents(0, stack.getItem().getContainerItem(stack));
                                 }else {
+                                    burningStack = stack.copy();
                                     stack.shrink(1);
                                 }
                             }

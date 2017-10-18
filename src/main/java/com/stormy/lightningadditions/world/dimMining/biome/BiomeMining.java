@@ -27,14 +27,14 @@ import java.util.Random;
 
 public class BiomeMining extends Biome{
 
-    public static final String biome_name = "mining_biome";
+    public static final String biome_name = "Miner's Paradise";
     public static BiomeMining biomeMining = new BiomeMining(BiomeMiningProperties.getBiomeProperties());
 
     private final WorldGenerator theWorldGenerator = new WorldGenMinable(Blocks.MONSTER_EGG.getDefaultState().withProperty(BlockSilverfish.VARIANT, BlockSilverfish.EnumType.STONE), 9);
 
     public BiomeMining(BiomeProperties properties) {
         super(properties);
-        this.setRegistryName(ModInformation.MODID, biome_name);
+        this.setRegistryName(ModInformation.MODID, "mining_biome");
     }
 
     public void decorate(World worldIn, Random rand, BlockPos pos)

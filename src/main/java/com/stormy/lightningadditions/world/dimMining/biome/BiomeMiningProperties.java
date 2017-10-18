@@ -18,7 +18,11 @@ public class BiomeMiningProperties {
 
     public static Biome.BiomeProperties getBiomeProperties(){
         BiomeMining.BiomeProperties properties = new BiomeMining.BiomeProperties(BiomeMining.biome_name);
-        properties.setRainDisabled();
+        properties.setRainDisabled()
+            .setBaseHeight(0.125F)
+            .setHeightVariation(0.05F)
+            .setTemperature(0.8F)
+            .setRainfall(0.4F);
 
         return properties;
     }

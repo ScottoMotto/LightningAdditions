@@ -10,13 +10,20 @@
 
 package com.stormy.lightningadditions.proxy;
 
+import com.stormy.lightningadditions.block.ore.OreDictTooltipEvent;
 import com.stormy.lightningadditions.init.ModBlocks;
 import com.stormy.lightningadditions.init.ModItems;
 import com.stormy.lightningadditions.init.ModKeys;
 import com.stormy.lightningadditions.init.ModRegistry;
 import com.stormy.lightningadditions.reference.ModInformation;
+import com.stormy.lightningadditions.tile.generator.TileEntityFuelGenerator;
+import com.stormy.lightningadditions.tile.generator.renderer.TileEntityFuelGeneratorRenderer;
+import com.stormy.lightningadditions.tile.resource.TileEntityDisplayCase;
+import com.stormy.lightningadditions.tile.resource.TileEntityParticleAccelerator;
 import com.stormy.lightningadditions.tile.resource.TileEntitySky;
 import com.stormy.lightningadditions.tile.resource.TileEntitySkyRenderer;
+import com.stormy.lightningadditions.tile.resource.renderer.TileEntityDisplayCaseRenderer;
+import com.stormy.lightningadditions.tile.resource.renderer.TileEntityParticlerAcceleratorRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +32,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -57,6 +65,7 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getFramebuffer().enableStencil();
 
         ModKeys.init();
+        MinecraftForge.EVENT_BUS.register(new OreDictTooltipEvent()); //Shows OreDict tooltips
     }
 
     @Override
@@ -66,7 +75,9 @@ public class ClientProxy extends CommonProxy {
         ModRegistry.registerRenderBlocks();
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySky.class, new TileEntitySkyRenderer());
-//        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoundMuffler.class, new TileEntityRendererSoundMuffler());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFuelGenerator.class, new TileEntityFuelGeneratorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityParticleAccelerator.class, new TileEntityParticlerAcceleratorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDisplayCase.class, new TileEntityDisplayCaseRenderer());
 
     }
 

@@ -36,7 +36,6 @@ public class ModSounds {
     public static void registerSounds()
     {
         tachyon_zoom = createSound("tachyon_zoom");
-        void_block = createSound("teleport");
         philosopher_stone = createSound("philosopher_stone");
         water_place = createSound("water_place");
         void_block = createSound("void_block");
@@ -44,7 +43,6 @@ public class ModSounds {
         sonic_screwdriver = createSound("sonic_screwdriver");
 
         registerSound(tachyon_zoom);
-        registerSound(void_block);
         registerSound(philosopher_stone);
         registerSound(water_place);
         registerSound(void_block);

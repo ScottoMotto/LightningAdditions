@@ -38,7 +38,7 @@ public class LATile extends TileEntity implements ITickable {
 
     @Nonnull
     @Override
-    public final NBTTagCompound getUpdateTag() {
+    public NBTTagCompound getUpdateTag() {
         return writeToNBT(new NBTTagCompound());
     }
 
@@ -53,7 +53,7 @@ public class LATile extends TileEntity implements ITickable {
     public void readCustomNBT(NBTTagCompound cmp) {}
 
     @Override
-    public final SPacketUpdateTileEntity getUpdatePacket() {
+    public SPacketUpdateTileEntity getUpdatePacket() {
         NBTTagCompound tag = new NBTTagCompound();
         writeCustomNBT(tag);
         return new SPacketUpdateTileEntity(pos, -999, tag);
@@ -68,4 +68,17 @@ public class LATile extends TileEntity implements ITickable {
     @Override
     public void update() {}
 
+    @Override
+    public void markDirty(){
+        super.markDirty();
+
+        if(this.world != null){
+            IBlockState state = getWorld().getBlockState(this.pos);
+
+            if(state != null){
+                state.getBlock().updateTick(this.world, this.pos, state, this.world.rand);
+                this.world.notifyBlockUpdate(pos, state, state, 3);
+            }
+        }
+    }
 }

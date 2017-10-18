@@ -20,6 +20,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -90,6 +92,8 @@ public class ModRegistry {
         registerBlock(ModBlocks.ender_hopper);
         registerBlock(ModBlocks.particle_accellerator);
         registerBlock(ModBlocks.crop_comparator);
+        registerBlock(ModBlocks.display_case);
+        registerBlock(ModBlocks.compressed_base);
 
         //Generators
         registerBlock(ModBlocks.solar_generator);
@@ -116,6 +120,10 @@ public class ModRegistry {
 
     public static void registerBiomes(){
         registerBiome(BiomeMining.biomeMining);
+    }
+
+    public static void registerBiomeTypes(){
+        BiomeDictionary.addTypes(BiomeMining.biomeMining, Type.FOREST);
     }
 
     public static void registerRenderItems(){
@@ -173,6 +181,8 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.particle_accellerator);
         registerBlockRender(ModBlocks.ender_hopper);
         registerBlockRender(ModBlocks.crop_comparator);
+        registerBlockRender(ModBlocks.display_case);
+        registerBlockRender(ModBlocks.compressed_base);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);
@@ -195,6 +205,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.NETHER_LAPIS_ORE);
         registerBlockRender(ModBlocks.NETHER_DIAMOND_ORE);
         registerBlockRender(ModBlocks.NETHER_EMERALD_ORE);
+
     }
 
     //Registry
@@ -237,6 +248,7 @@ public class ModRegistry {
     @SubscribeEvent
     public void onBiomeRegistry(RegistryEvent.Register<Biome> event){
         biomeList.forEach(event.getRegistry()::register);
+        registerBiomeTypes();
     }
 
 }

@@ -23,4 +23,20 @@ public class KeyChecker {
         }
     }
 
+    public static boolean isHoldingCtrl(){
+        if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static boolean isHoldingAlt(){
+        if (Keyboard.isKeyDown(Keyboard.KEY_LMENU) || Keyboard.isKeyDown(Keyboard.KEY_RMENU)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
