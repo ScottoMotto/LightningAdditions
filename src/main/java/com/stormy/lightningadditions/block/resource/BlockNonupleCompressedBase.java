@@ -1,6 +1,8 @@
 package com.stormy.lightningadditions.block.resource;
 
+import com.stormy.lightningadditions.utility.logger.LALogger;
 import com.stormy.lightningadditions.world.structures.Structure9x9;
+import com.stormy.lightningadditions.world.structures.Structure9x9.Directions;
 import com.stormy.lightninglib.lib.utils.KeyChecker;
 import com.stormy.lightninglib.lib.utils.TranslateUtils;
 import net.minecraft.block.Block;
@@ -121,17 +123,71 @@ public class BlockNonupleCompressedBase extends Block {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote){
-            worldIn.setBlockToAir(pos);
+            Rotation rotation = Rotation.NONE;
+            EnumFacing chestOrientation = EnumFacing.NORTH;
+            Directions directions = Directions.NONE;
+
             if (state.getValue(FACING) == EnumFacing.NORTH){
-                Structure9x9.generateStructure((WorldServer) worldIn, pos, new Random(), Rotation.NONE, EnumFacing.NORTH);
+                rotation = Rotation.NONE;
+                chestOrientation = EnumFacing.NORTH;
             } else if (state.getValue(FACING) == EnumFacing.SOUTH){
-                Structure9x9.generateStructure((WorldServer) worldIn, pos, new Random(), Rotation.CLOCKWISE_180, EnumFacing.SOUTH);
+                rotation = Rotation.CLOCKWISE_180;
+                chestOrientation = EnumFacing.SOUTH;
             } else if (state.getValue(FACING) == EnumFacing.EAST){
-                Structure9x9.generateStructure((WorldServer) worldIn, pos, new Random(), Rotation.CLOCKWISE_90, EnumFacing.EAST);
+                rotation = Rotation.CLOCKWISE_90;
+                chestOrientation = EnumFacing.EAST;
             } else if (state.getValue(FACING) == EnumFacing.WEST){
-                Structure9x9.generateStructure((WorldServer) worldIn, pos, new Random(), Rotation.COUNTERCLOCKWISE_90, EnumFacing.WEST);
+                rotation = Rotation.COUNTERCLOCKWISE_90;
+                chestOrientation = EnumFacing.WEST;
             }
 
+            if (isCompressedBase(worldIn, pos.north())){
+                if (isCompressedBase(worldIn, pos.south())){
+                    if (isCompressedBase(worldIn, pos.east())){
+                        if (isCompressedBase(worldIn, pos.west())){
+                            directions = Directions.ALL;
+                        } else {
+                            directions = Directions.NORTH_SOUTH_EAST;
+                        }
+                    } else if (isCompressedBase(worldIn, pos.west())){
+                        directions = Directions.NORTH_SOUTH_WEST;
+                    } else {
+                        directions = Directions.NORTH_SOUTH;
+                    }
+                } else if (isCompressedBase(worldIn, pos.east())) {
+                    if (isCompressedBase(worldIn, pos.west())){
+                        directions = Directions.NORTH_EAST_WEST;
+                    } else {
+                        directions = Directions.NORTH_EAST;
+                    }
+                } else if (isCompressedBase(worldIn, pos.west())) {
+                    directions = Directions.NORTH_WEST;
+                } else {
+                    directions = Directions.NORTH;
+                }
+            } else if (isCompressedBase(worldIn, pos.south())){
+                if (isCompressedBase(worldIn, pos.east())){
+                    if (isCompressedBase(worldIn, pos.west())){
+                        directions = Directions.SOUTH_EAST_WEST;
+                    } else {
+                        directions = Directions.SOUTH_EAST;
+                    }
+                } else if (isCompressedBase(worldIn, pos.west())){
+                    directions = Directions.SOUTH_WEST;
+                } else {
+                    directions = Directions.SOUTH;
+                }
+            } else if (isCompressedBase(worldIn, pos.east())){
+                if (isCompressedBase(worldIn, pos.west())) {
+                    directions = Directions.EAST_WEST;
+                } else {
+                    directions = Directions.EAST;
+                }
+            } else if (isCompressedBase(worldIn, pos.west())){
+                directions = Directions.WEST;
+            }
+
+            Structure9x9.generateStructure((WorldServer) worldIn, pos, new Random(), rotation, chestOrientation, directions);
             playerIn.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0f, 1.0f);
 
             return true;
@@ -183,6 +239,10 @@ public class BlockNonupleCompressedBase extends Block {
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
         return false;
+    }
+
+    private static boolean isCompressedBase(World world, BlockPos pos){
+        return world.getBlockState(pos).getBlock() instanceof BlockNonupleCompressedBase;
     }
 
 }
