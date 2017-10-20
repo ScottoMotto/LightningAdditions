@@ -11,6 +11,7 @@
 package com.stormy.lightningadditions.init;
 
 import com.stormy.lightningadditions.block.base.BlockMachineBlock;
+import com.stormy.lightningadditions.block.energy_storage.BlockEnergyStorageBasic;
 import com.stormy.lightningadditions.block.generator.BlockBioFuelGenerator;
 import com.stormy.lightningadditions.block.generator.BlockFuelGenerator;
 import com.stormy.lightningadditions.block.generator.BlockSolarGenerator;
@@ -58,6 +59,9 @@ public class ModBlocks
     public static Block solar_generator;
     public static Block fuel_generator;
     public static Block biofuel_generator;
+
+    //Energy Storage
+    public static Block basic_energy_storage;
 
     //[Overworld Ores]
     public static final Block OVERWORLD_TIN_ORE = new OverworldOreBlock("overworld_tin_ore");
@@ -113,6 +117,9 @@ public class ModBlocks
         solar_generator = new BlockSolarGenerator().setUnlocalizedName("solar_generator").setRegistryName("solar_generator").setCreativeTab(CreativeTabLA.LA_TAB);
         fuel_generator = new BlockFuelGenerator().setUnlocalizedName("fuel_generator").setRegistryName("fuel_generator").setCreativeTab(CreativeTabLA.LA_TAB);
         biofuel_generator = new BlockBioFuelGenerator().setUnlocalizedName("biofuel_generator").setRegistryName("biofuel_generator").setCreativeTab(CreativeTabLA.LA_TAB);
+
+        //Energy Storage
+        basic_energy_storage = new BlockEnergyStorageBasic().setUnlocalizedName("basic_energy_storage").setRegistryName("basic_energy_storage").setCreativeTab(CreativeTabLA.LA_TAB);
     }
 
 }

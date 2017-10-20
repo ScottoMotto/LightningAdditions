@@ -2,6 +2,7 @@ package com.stormy.lightninglib.lib.utils;
 
 import cofh.energy.*;
 import com.stormy.lightningadditions.utility.inventory.BlockHelper;
+import com.stormy.lightningadditions.utility.logger.LALogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -153,4 +154,27 @@ public class EnergyHelper
 
         return tile != null && tile.hasCapability(ENERGY_HANDLER, face);
     }
+
+    public static boolean canExtract(TileEntity tile, EnumFacing side){
+        TileEntity handler = BlockHelper.getAdjacentTileEntity(tile, side);
+
+        if (handler instanceof IEnergyProvider) {
+            return ((IEnergyProvider) handler).getEnergyStored(side) > 0;
+        } else if (handler != null && handler.hasCapability(ENERGY_HANDLER, side.getOpposite())) {
+            return handler.getCapability(ENERGY_HANDLER, side.getOpposite()).getEnergyStored() > 0;
+        }
+        return false;
+    }
+
+    public static boolean canReceive(TileEntity tile, EnumFacing side){
+        TileEntity handler = BlockHelper.getAdjacentTileEntity(tile, side);
+
+        if (handler instanceof IEnergyProvider) {
+            return ((IEnergyProvider) handler).getEnergyStored(side) < ((IEnergyProvider) handler).getMaxEnergyStored(side);
+        } else if (handler != null && handler.hasCapability(ENERGY_HANDLER, side.getOpposite())) {
+            return handler.getCapability(ENERGY_HANDLER, side.getOpposite()).getEnergyStored() < handler.getCapability(ENERGY_HANDLER, side.getOpposite()).getMaxEnergyStored();
+        }
+        return false;
+    }
+
 }

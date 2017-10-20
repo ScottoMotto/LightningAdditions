@@ -101,6 +101,9 @@ public class ModRegistry {
         registerBlock(ModBlocks.fuel_generator);
         registerBlock(ModBlocks.biofuel_generator);
 
+        //Energy Storage
+        registerBlock(ModBlocks.basic_energy_storage);
+
         //Ores
         registerBlock(ModBlocks.OVERWORLD_TIN_ORE);
         registerBlock(ModBlocks.OVERWORLD_LEAD_ORE);

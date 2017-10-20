@@ -3,6 +3,8 @@ package com.stormy.lightningadditions.tile.energy_storage;
 import cofh.energy.IEnergyProvider;
 import cofh.energy.IEnergyReceiver;
 import com.stormy.lightningadditions.tile.base.LATile;
+import com.stormy.lightningadditions.utility.logger.LALogger;
+import com.stormy.lightninglib.lib.utils.EnergyHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -246,7 +248,7 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
             return 0;
         }
 
-        int energyReceived = Math.min(this.current_RF, Math.min(this.maxReceive, maxReceive));
+        int energyReceived = Math.max(this.current_RF, Math.max(this.maxReceive, maxReceive));
 
         if (!simulate) {
             this.current_RF += energyReceived;
@@ -265,6 +267,8 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
         if (!simulate){
             this.current_RF -= energyExtracted;
         }
+
+        LALogger.info("Max: " + maxExtract + " - Rec: " + energyExtracted + " - Current: " + this.current_RF);
 
         return energyExtracted;
     }
@@ -292,7 +296,7 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
 
     @Override
     public boolean canReceive() {
-        if (this.getEnergyStored() <= this.maxRF) {
+        if (this.getEnergyStored() <= this.getMaxRF()) {
             return true;
         }
         return false;
@@ -306,9 +310,35 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
                     if (tile.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()).canReceive()) {
                         tile.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()).receiveEnergy(this.extractEnergy(this.maxExtract, false), false);
                     }
+                } else {
+                    if (EnergyHelper.canReceive(this, facing)) {
+                        this.current_RF -= EnergyHelper.insertEnergyIntoAdjacentEnergyReceiver(this, facing, this.maxExtract, false);
+                    }
                 }
             }
         }
+    }
+
+    public void pullEnergy(World world, BlockPos pos){
+        for (EnumFacing facing: EnumFacing.values()){
+            TileEntity tile = world.getTileEntity(pos.offset(facing));
+            if (tile != null){
+                if (tile.hasCapability(CapabilityEnergy.ENERGY, facing.getOpposite())){
+                    if (tile.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()).canExtract()) {
+                        tile.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()).extractEnergy(this.receiveEnergy(this.maxReceive, false), false);
+                    }
+                } else {
+                    if (EnergyHelper.canExtract(this, facing)) {
+                        this.current_RF += EnergyHelper.extractEnergyFromAdjacentEnergyProvider(this, facing, this.maxReceive, false);
+                    }
+                }
+
+            }
+        }
+    }
+
+    public int getMaxRF() {
+        return this.maxRF;
     }
 
     //COFH
@@ -329,31 +359,12 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
     }
 
     @Override
-    public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
-        if (!canExtract()){
-            return 0;
-        }
-
-        int energyExtracted = Math.min(this.current_RF, Math.min(this.maxExtract, maxExtract));
-        if (!simulate){
-            this.current_RF -= energyExtracted;
-        }
-
-        return energyExtracted;
+    public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate) {
+        return this.receiveEnergy(maxReceive, simulate);
     }
 
     @Override
-    public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate) {
-        if (!canReceive()) {
-            return 0;
-        }
-
-        int energyReceived = Math.min(this.current_RF, Math.min(this.maxReceive, maxReceive));
-
-        if (!simulate) {
-            this.current_RF += energyReceived;
-        }
-
-        return energyReceived;
+    public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
+        return this.extractEnergy(maxExtract, simulate);
     }
 }

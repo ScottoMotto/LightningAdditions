@@ -10,6 +10,7 @@
 
 package com.stormy.lightningadditions.init;
 
+import com.stormy.lightningadditions.tile.energy_storage.TileEntityEnergyStorageBasic;
 import com.stormy.lightningadditions.tile.generator.TileEntityBioFuelGenerator;
 import com.stormy.lightningadditions.tile.generator.TileEntityFuelGenerator;
 import com.stormy.lightningadditions.tile.generator.TileEntitySolarGenerator;
@@ -32,6 +33,7 @@ public final class ModTileEntities {
         GameRegistry.registerTileEntity(TileEntityBioFuelGenerator.class, "biofuel_generator");
         GameRegistry.registerTileEntity(TileEntityParticleAccelerator.class, "particle_accelerator");
         GameRegistry.registerTileEntity(TileEntityDisplayCase.class, "display_case");
+        GameRegistry.registerTileEntity(TileEntityEnergyStorageBasic.class, "energy_storage_basic");
     }
 
 }
