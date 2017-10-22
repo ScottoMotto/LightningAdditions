@@ -5,6 +5,7 @@
 itemGroup.lightningadditions=Lightning Additions!
 itemGroup.lightningadditions.ores=Lightning Additions Ores!
 
+
 #Items
 item.redstone_component.name=Redstone Component
 item.tachyon_shard.name=Stabilized Tachyon Shard
@@ -28,6 +29,7 @@ item.teleport_wand.name=Displacement Wand
 item.stone_stick.name=Stick
 item.lauren_december.name=December Victus!
 item.lauren_january.name=January Blues!
+item.watering_can.name=Watering Can
 
 
 #Tooltips
@@ -69,9 +71,29 @@ tooltip.item.lauren_january.line1=Branded, Bloody and Heartbroken.
 tooltip.item.lauren_january.line2="Operation_#050117b, Resignee: Stormy"
 tooltip.block.redstone_clock.line1=Your more advanced version of a classic!
 tooltip.block.crop_comparator.line1=Ma! The block is watching the crops again!
-tooltip.block.display_case.line1=Ooh! Fancy.
+tooltip.block.display_case.line1=Ooh! Le Fancy.
 tooltip.block.compressed_base.line1=Direwolf20's favorite structure!
 tooltip.block.special_chair.line1=Working on it.. Please Stand By!
+tooltip.block.cCobble.compression1.line1=Compressed Cobblestone [1x]
+tooltip.block.cCobble.compression1.line2=(Contains 9 Cobblestone)
+tooltip.block.cCobble.compression2.line1=Double Compressed Cobblestone [2x]
+tooltip.block.cCobble.compression2.line2=(Contains 81 Cobblestone)
+tooltip.block.cCobble.compression3.line1=Triple Compressed Cobblestone [3x]
+tooltip.block.cCobble.compression3.line2=(Contains 729 Cobblestone)
+tooltip.block.cCobble.compression4.line1=Quadruple Compressed Cobblestone [4x]
+tooltip.block.cCobble.compression4.line2=(Contains 6,561 Cobblestone)
+tooltip.block.cCobble.compression5.line1=Quintuple Compressed Cobblestone [5x]
+tooltip.block.cCobble.compression5.line2=(Contains 59,049 Cobblestone)
+tooltip.block.cCobble.compression6.line1=Sextuple Compressed Cobblestone [6x]
+tooltip.block.cCobble.compression6.line2=(Contains 531,441 Cobblestone)
+tooltip.block.cCobble.compression7.line1=Septuple Compressed Cobblestone [7x]
+tooltip.block.cCobble.compression7.line2=(Contains 4,782,969 Cobblestone)
+tooltip.block.cCobble.compression8.line1=Octuple Compressed Cobblestone [8x]
+tooltip.block.cCobble.compression8.line2=(Contains 43,046,721 Cobblestone)
+tooltip.item.watering_can.line1=The wonders of a metal can, containing water! :O
+tooltip.item.watering_can.line2=Automatic Mode: Shift-Right click. (Toggle On/Off)
+tooltip.block.nether_water.line1=Water in the Nether and to 'infinity'!
+
 
 #Chats
 chat.item.atomic_magnet.enabled=Exertion Mode now active.
@@ -79,6 +101,7 @@ chat.item.atomic_magnet.disabled=Exertion Mode now disabled.
 chat.item.atomic_magnet.attracts=Magnet will exert items and XP towards oneself.
 chat.item.atomic_magnet.repels=Magnet will exert items and XP away.
 chat.tachyon_shard.missing_enhancer=Shards are too unstable for use without a Tachyon Enhancer!
+
 
 #TileBlocks
 tile.machine_block_basic.name=Basic Machine Block
@@ -130,12 +153,16 @@ tile.crop_comparator.name=Crop Comparator
 tile.display_case.name=Display Case
 tile.compressed_base.name=Nonuple Compressed Base
 tile.special_chair.name=Wooden Chair
+tile.nether_water.name=Stabilised Water Tank
+
+
 
 #Config Categories
 config.category.atomicMagnet.title=Atomic Exertion Magnet
 config.category.atomicMagnet.desc=Configure how the Atomic Exertion Magnet functions.
 config.category.displayCase.title=Display Case
 config.category.displayCase.desc=Configure how the Display Case functions.
+
 
 #Configs
 config.atomicMagnetRange.title=Exertion Range
@@ -149,10 +176,12 @@ config.creativeTabSearchBar.desc=Should the creative tab have a search bar.
 config.enableDisplayEditing.title=Enable Display Case Display Editing
 config.enableDisplayEditing.desc=Should the Display Case have custom display editing?
 
+
 #Utils
 calculations.calc=Calculator
 string.back=Back
 container.tube=Transport Tube
+
 
 #Keys
 key.lightningadditions.category=Lightning Additions!
@@ -160,6 +189,7 @@ key.lightningadditions.chunkbounds.desc=Show/Hide Chunk Boundaries
 key.lightningadditions.lightoverlay.desc=Show/Hide Light Level Blocks
 key.openCalculator=Open Calculator
 key.hideGui=Hide GUI
+
 
 #Gui
 gui.generator.info.storage_full=Storage Buffer Full

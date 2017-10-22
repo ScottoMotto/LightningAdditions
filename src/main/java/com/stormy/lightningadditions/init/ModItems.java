@@ -38,6 +38,7 @@ public class ModItems
     public static Item teleport_wand;
     public static Item lauren_december;
     public static Item lauren_january;
+    public static Item watering_can;
 
     //Music
     public static Item record_eleventh;
@@ -69,6 +70,7 @@ public class ModItems
         teleport_wand = new ItemTeleportWand().setUnlocalizedName("teleport_wand").setRegistryName("teleport_wand").setCreativeTab(CreativeTabLA.LA_TAB);
         lauren_december = new ItemDecemberVictus(1, Integer.MAX_VALUE, true).setUnlocalizedName("lauren_december").setRegistryName("lauren_december").setCreativeTab(CreativeTabLA.LA_TAB);
         lauren_january = new ItemJanuaryBlues(1, Integer.MAX_VALUE, true).setUnlocalizedName("lauren_january").setRegistryName("lauren_january").setCreativeTab(CreativeTabLA.LA_TAB);
+        watering_can = new ItemWateringCan("watering_can").setUnlocalizedName("watering_can").setRegistryName("watering_can").setCreativeTab(CreativeTabLA.LA_TAB);
 
         //Music
         record_eleventh = new ItemRecordEleventh().setUnlocalizedName("record_eleventh").setRegistryName("record_eleventh").setCreativeTab(CreativeTabLA.LA_TAB);
