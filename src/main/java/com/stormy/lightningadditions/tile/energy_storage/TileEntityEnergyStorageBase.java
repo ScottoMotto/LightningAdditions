@@ -3,7 +3,6 @@ package com.stormy.lightningadditions.tile.energy_storage;
 import cofh.energy.IEnergyProvider;
 import cofh.energy.IEnergyReceiver;
 import com.stormy.lightningadditions.tile.base.LATile;
-import com.stormy.lightningadditions.utility.logger.LALogger;
 import com.stormy.lightninglib.lib.utils.EnergyHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
