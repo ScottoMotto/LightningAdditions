@@ -31,6 +31,7 @@ import com.stormy.lightningadditions.utility.xpshare.CPacketRequest;
 import com.stormy.lightningadditions.utility.xpshare.SPacketUpdate;
 import com.stormy.lightningadditions.world.WorldGen;
 import com.stormy.lightningadditions.world.jsonhelper.JsonLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -117,8 +118,11 @@ public class LightningAdditions
         proxy.registerRenders();
         proxy.init(event);
 
-        { EntityRegistry.registerModEntity(new ResourceLocation(ModInformation.MODID, "entity_sitting"),
-                BlockSpecialChair.EntitySitting.class, "entity_sitting", 0, LightningAdditions.INSTANCE, 256, 20, false); }
+        {
+            EntityRegistry.registerModEntity(new ResourceLocation(ModInformation.MODID, "entity_sitting"),
+            BlockSpecialChair.EntitySitting.class, "entity_sitting", 0, LightningAdditions.INSTANCE, 256, 20, false);
+            MinecraftForge.EVENT_BUS.register(new BlockSpecialChair.ForgeEventHandler());
+        }
 
         ModOreDict.registerOres();
 
