@@ -59,6 +59,7 @@ public class ModRegistry {
         registerItem(ModItems.lauren_december);
         registerItem(ModItems.lauren_january);
         registerItem(ModItems.record_eleventh);
+        registerItem(ModItems.watering_can);
 
         registerItem(ModItems.TIN_INGOT);
         registerItem(ModItems.LEAD_INGOT);
@@ -95,6 +96,7 @@ public class ModRegistry {
         registerBlock(ModBlocks.display_case);
         registerBlock(ModBlocks.compressed_base);
         registerBlock(ModBlocks.special_chair);
+        registerBlock(ModBlocks.nether_water);
 
         //Generators
         registerBlock(ModBlocks.solar_generator);
@@ -148,6 +150,7 @@ public class ModRegistry {
         registerItemRender(ModItems.teleport_wand);
         registerItemRender(ModItems.lauren_december);
         registerItemRender(ModItems.lauren_january);
+        registerItemRender(ModItems.watering_can);
 
         //Ingots
         registerItemRender(ModItems.TIN_INGOT);
@@ -185,6 +188,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.display_case);
         registerBlockRender(ModBlocks.compressed_base);
         registerBlockRender(ModBlocks.special_chair);
+        registerBlockRender(ModBlocks.nether_water);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);

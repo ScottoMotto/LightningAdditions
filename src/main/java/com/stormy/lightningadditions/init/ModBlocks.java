@@ -53,6 +53,7 @@ public class ModBlocks
     public static Block display_case;
     public static Block compressed_base;
     public static Block special_chair;
+    public static Block nether_water;
 
     //Generators
     public static Block solar_generator;
@@ -108,11 +109,13 @@ public class ModBlocks
         display_case = new BlockDisplayCase().setUnlocalizedName("display_case").setRegistryName("display_case").setCreativeTab(CreativeTabLA.LA_TAB);
         compressed_base = new BlockNonupleCompressedBase().setUnlocalizedName("compressed_base").setRegistryName("compressed_base").setCreativeTab(CreativeTabLA.LA_TAB);
         special_chair = new BlockSpecialChair().setUnlocalizedName("special_chair").setRegistryName("special_chair").setCreativeTab(CreativeTabLA.LA_TAB);
+        nether_water = new BlockNetherWater().setUnlocalizedName("nether_water").setRegistryName("nether_water").setCreativeTab(CreativeTabLA.LA_TAB);
 
         //Generators
         solar_generator = new BlockSolarGenerator().setUnlocalizedName("solar_generator").setRegistryName("solar_generator").setCreativeTab(CreativeTabLA.LA_TAB);
         fuel_generator = new BlockFuelGenerator().setUnlocalizedName("fuel_generator").setRegistryName("fuel_generator").setCreativeTab(CreativeTabLA.LA_TAB);
         biofuel_generator = new BlockBioFuelGenerator().setUnlocalizedName("biofuel_generator").setRegistryName("biofuel_generator").setCreativeTab(CreativeTabLA.LA_TAB);
+
     }
 
 }

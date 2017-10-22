@@ -40,7 +40,7 @@ public class BlockBase extends Block
         this.setHardness(5F);
         setSoundType(SoundType.STONE);
         this.setResistance(10F); }
-    public BlockBase() { this(Material.ROCK, MapColor.GRAY); }
+    public BlockBase(Material material, String name) { this(Material.ROCK, MapColor.GRAY); }
 
 
 
