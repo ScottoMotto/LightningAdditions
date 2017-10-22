@@ -63,6 +63,7 @@ public class ModBlocks
 
     //Energy Storage
     public static Block basic_energy_storage;
+    public static Block wireless_charger;
 
     //[Overworld Ores]
     public static final Block OVERWORLD_TIN_ORE = new OverworldOreBlock("overworld_tin_ore");
@@ -122,6 +123,7 @@ public class ModBlocks
 
         //Energy Storage
         basic_energy_storage = new BlockEnergyStorageBasic().setUnlocalizedName("basic_energy_storage").setRegistryName("basic_energy_storage").setCreativeTab(CreativeTabLA.LA_TAB);
+        wireless_charger = new BlockWirelessCharger().setUnlocalizedName("wireless_charger").setRegistryName("wireless_charger").setCreativeTab(CreativeTabLA.LA_TAB);
     }
 
 }

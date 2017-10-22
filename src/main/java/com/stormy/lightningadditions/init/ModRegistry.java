@@ -105,6 +105,7 @@ public class ModRegistry {
 
         //Energy Storage
         registerBlock(ModBlocks.basic_energy_storage);
+        registerBlock(ModBlocks.wireless_charger);
 
         //Ores
         registerBlock(ModBlocks.OVERWORLD_TIN_ORE);
@@ -192,6 +193,7 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.compressed_base);
         registerBlockRender(ModBlocks.special_chair);
         registerBlockRender(ModBlocks.nether_water);
+        registerBlockRender(ModBlocks.wireless_charger);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);
