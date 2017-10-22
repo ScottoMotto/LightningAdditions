@@ -216,6 +216,8 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
             compound.setString("CustomName", this.getCustomName());
         }
 
+        compound.setInteger("energy", this.getEnergyStored());
+
         return compound;
 
     }
@@ -233,10 +235,23 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
         if (compound.hasKey("CustomName", 8)) {
             this.setCustomName(compound.getString("CustomName"));
         }
+
+        this.current_RF = compound.getInteger("energy");
+
     }
 
     @Override
     public void update() {
+
+        if (this.getEnergyStored() > 0) {
+            pushEnergy(this.world, this.pos);
+        }
+
+        if (this.getEnergyStored() < this.getMaxRF() && this.getEnergyStored() >= 0) {
+            pullEnergy(this.world, this.pos);
+        }
+
+        this.markDirty();
 
     }
 
@@ -267,8 +282,6 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
         if (!simulate){
             this.current_RF -= energyExtracted;
         }
-
-        LALogger.info("Max: " + maxExtract + " - Rec: " + energyExtracted + " - Current: " + this.current_RF);
 
         return energyExtracted;
     }
@@ -315,12 +328,14 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
                         this.current_RF -= EnergyHelper.insertEnergyIntoAdjacentEnergyReceiver(this, facing, this.maxExtract, false);
                     }
                 }
+                if (this.getEnergyStored() < 0) this.current_RF = 0;
             }
         }
     }
 
     public void pullEnergy(World world, BlockPos pos){
-        for (EnumFacing facing: EnumFacing.values()){
+//        for (EnumFacing facing: EnumFacing.values()){
+        EnumFacing facing = EnumFacing.UP;
             TileEntity tile = world.getTileEntity(pos.offset(facing));
             if (tile != null){
                 if (tile.hasCapability(CapabilityEnergy.ENERGY, facing.getOpposite())){
@@ -332,9 +347,9 @@ public class TileEntityEnergyStorageBase extends LATile implements ITickable, IE
                         this.current_RF += EnergyHelper.extractEnergyFromAdjacentEnergyProvider(this, facing, this.maxReceive, false);
                     }
                 }
-
+                if (this.getEnergyStored() > this.getMaxRF()) this.current_RF = this.getMaxRF();
             }
-        }
+//        }
     }
 
     public int getMaxRF() {
