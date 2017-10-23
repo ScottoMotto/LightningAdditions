@@ -1,5 +1,10 @@
 {
-    "variants": {
-        "normal": { "model": "lightningadditions:wireless_charger" }
+  "variants": {
+    "powered=false": {
+      "model": "lightningadditions:wireless_charger"
+    },
+    "powered=true": {
+      "model": "lightningadditions:wireless_charger_inactive"
     }
+  }
 }
