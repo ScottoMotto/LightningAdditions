@@ -97,6 +97,8 @@ public class ModRegistry {
         registerBlock(ModBlocks.compressed_base);
         registerBlock(ModBlocks.special_chair);
         registerBlock(ModBlocks.nether_water);
+        registerBlock(ModBlocks.rain_detector);
+        registerBlock(ModBlocks.shared_chest);
 
         //Generators
         registerBlock(ModBlocks.solar_generator);
@@ -194,6 +196,8 @@ public class ModRegistry {
         registerBlockRender(ModBlocks.special_chair);
         registerBlockRender(ModBlocks.nether_water);
         registerBlockRender(ModBlocks.wireless_charger);
+        registerBlockRender(ModBlocks.rain_detector);
+        registerBlockRender(ModBlocks.shared_chest);
 
         //Generator
         registerBlockRender(ModBlocks.solar_generator);

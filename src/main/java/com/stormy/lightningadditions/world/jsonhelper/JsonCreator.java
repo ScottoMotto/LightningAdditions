@@ -18,6 +18,7 @@ import com.stormy.lightningadditions.reference.ModInformation;
 import com.stormy.lightningadditions.utility.logger.LALogger;
 
 import java.io.*;
+import java.util.logging.Level;
 
 public class JsonCreator
 {
@@ -349,7 +350,7 @@ public class JsonCreator
     {
         if (runOnce)
         {
-            LALogger.log("LA has been updated since previous version");
+            LALogger.log(Level.WARNING, "LA has been updated since previous version");
             runOnce = false;
         }
         if ((updateFile.exists()) && (!updateFile.isDirectory())) {

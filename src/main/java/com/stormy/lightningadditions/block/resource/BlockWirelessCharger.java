@@ -3,6 +3,8 @@ package com.stormy.lightningadditions.block.resource;
 import com.stormy.lightningadditions.creativetab.CreativeTabLA;
 import com.stormy.lightningadditions.tile.resource.TileEntityWirelessCharger;
 import com.stormy.lightninglib.lib.block.BlockBase;
+import com.stormy.lightninglib.lib.utils.KeyChecker;
+import com.stormy.lightninglib.lib.utils.TranslateUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -11,6 +13,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -19,9 +22,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
+
+import static com.stormy.lightninglib.lib.utils.StringHelper.BOLD;
+import static com.stormy.lightninglib.lib.utils.StringHelper.ITALIC;
 
 public class BlockWirelessCharger extends BlockBase implements ITileEntityProvider
 {
@@ -92,6 +101,14 @@ public class BlockWirelessCharger extends BlockBase implements ITileEntityProvid
     public TileEntity createNewTileEntity(World arg0, int arg1)
     {
         return new TileEntityWirelessCharger();
+    }
+
+    //Custom Tooltip
+    @Override
+    public void addInformation(ItemStack par1ItemStack, @Nullable World world, List par3List, ITooltipFlag par4) {
+        if (KeyChecker.isHoldingShift()) { par3List.add(TextFormatting.AQUA + ITALIC + TranslateUtils.toLocal("tooltip.block.wireless_charger.line1")); }
+        if (KeyChecker.isHoldingShift()) { par3List.add(TextFormatting.LIGHT_PURPLE + BOLD + TranslateUtils.toLocal("tooltip.block.wireless_charger.line2")); }
+        else { par3List.add(TranslateUtils.toLocal("tooltip.item.hold") + " " + TextFormatting.AQUA + TextFormatting.ITALIC + TranslateUtils.toLocal("tooltip.item.shift")); }
     }
 
 }

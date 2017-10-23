@@ -32,6 +32,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
 
 public class NetherOreBlock extends LAOreBase
 {
@@ -104,7 +105,7 @@ public class NetherOreBlock extends LAOreBase
             {
                 EntityPigZombie zombiePig = (EntityPigZombie)entity;
                 zombiePig.setRevengeTarget(player);
-                LALogger.log("Zombie Pigmen hostility targeting: " + player.getDisplayNameString());
+                LALogger.log(Level.WARNING, "Zombie Pigmen hostility targeting: " + player.getDisplayNameString());
             }
         }
     }

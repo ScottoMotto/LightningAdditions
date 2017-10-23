@@ -23,7 +23,7 @@ public class LALogger
     {
         FMLLog.log(ModInformation.LOG, logLevel, string);
     }
-    public static void log(String string)
+    public static void log(java.util.logging.Level warning, String string)
     {
         FMLLog.log(ModInformation.LOG, Level.INFO, string);
     }

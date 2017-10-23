@@ -93,6 +93,10 @@ tooltip.block.cCobble.compression8.line2=(Contains 43,046,721 Cobblestone)
 tooltip.item.watering_can.line1=The wonders of a metal can, containing water! :O
 tooltip.item.watering_can.line2=Automatic Mode: Shift-Right click. (Toggle On/Off)
 tooltip.block.nether_water.line1=Water in the Nether and to 'infinity'!
+tooltip.block.wireless_charger.line1=Remote Coulombs directly to your tools!
+tooltip.block.wireless_charger.line2=(Use a redstone signal to deactivate!)
+tooltip.block.rain_detector.line1=Show me, show me: Is it raining yet?!
+tooltip.block.shared_chest.line1=Sharing is caring, right guys?!
 
 
 #Chats
@@ -154,7 +158,9 @@ tile.display_case.name=Display Case
 tile.compressed_base.name=Nonuple Compressed Base
 tile.special_chair.name=Wooden Chair
 tile.nether_water.name=Stabilised Water Tank
-
+tile.wireless_charger.name=Wireless Charger
+tile.rain_detector.name=Rain Detector
+tile.shared_chest.name=Collaborative Chest
 
 
 #Config Categories

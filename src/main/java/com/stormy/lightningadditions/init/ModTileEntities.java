@@ -35,6 +35,7 @@ public final class ModTileEntities {
         GameRegistry.registerTileEntity(TileEntityDisplayCase.class, "display_case");
         GameRegistry.registerTileEntity(TileEntityEnergyStorageBasic.class, "energy_storage_basic");
         GameRegistry.registerTileEntity(TileEntityWirelessCharger.class, "wireless_charger");
+        GameRegistry.registerTileEntity(TileEntityRainDetector.class, "rain_detector");
     }
 
 }

@@ -42,6 +42,7 @@ public class GuiHandler implements IGuiHandler{
     public static int gui_id_biofuel_generator = gui_id_base + 5;
     public static int gui_id_particle_accelerator = gui_id_base + 6;
     public static int gui_id_display_case = gui_id_base + 7;
+    public static int gui_id_shared_chest = gui_id_base + 8;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -72,6 +73,10 @@ public class GuiHandler implements IGuiHandler{
         }
         else if (ID == gui_id_display_case){
             return new ContainerDisplayCase(player.inventory, (TileEntityDisplayCase) world.getTileEntity(pos));
+        }
+
+        else if (ID == gui_id_shared_chest){
+            return new ContainerSharedChest(player.inventory, (TileEntitySharedChest) world.getTileEntity(pos));
         }
 
         return null;
@@ -105,6 +110,10 @@ public class GuiHandler implements IGuiHandler{
         }
         else if (ID == gui_id_display_case){
             return new GuiDisplayCase(player.inventory, (TileEntityDisplayCase) world.getTileEntity(pos), player);
+        }
+
+        else if (ID == gui_id_shared_chest){
+            return new GuiSharedChest(player.inventory, (TileEntitySharedChest) world.getTileEntity(pos), player);
         }
 
         return null;

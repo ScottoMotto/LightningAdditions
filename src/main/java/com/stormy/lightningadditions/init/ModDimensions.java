@@ -20,6 +20,8 @@ import com.stormy.lightningadditions.world.dimvoid.VoidCreator;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
+import java.util.logging.Level;
+
 public class ModDimensions {
 
     public static DimensionType VoidDimType;
@@ -31,7 +33,7 @@ public class ModDimensions {
         DimensionManager.registerDimension(ConfigurationManagerLA.dimID, VoidDimType);
         DimensionManager.registerDimension(ConfigurationManagerLA.dimMiningID, MiningDimType);
 
-        LALogger.log("LA Dimensions registered.");
+        LALogger.log(Level.WARNING, "LA Dimensions registered.");
     }
 
 }

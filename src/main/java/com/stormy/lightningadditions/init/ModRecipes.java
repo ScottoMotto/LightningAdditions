@@ -16,10 +16,9 @@ import com.stormy.lightningadditions.utility.logger.LALogger;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.logging.Level;
 
 public class ModRecipes {
 
@@ -43,7 +42,7 @@ public class ModRecipes {
         //Blocks
         GameRegistry.addSmelting(new ItemStack(Blocks.GLASS), new ItemStack(ModBlocks.clear_glass), 0.05f);
 
-        LALogger.log("LA Recipes registered.");
+        LALogger.log(Level.WARNING, "LA Recipes registered.");
     }
 
 }

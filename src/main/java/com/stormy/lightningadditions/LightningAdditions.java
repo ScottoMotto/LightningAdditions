@@ -10,7 +10,6 @@
 
 package com.stormy.lightningadditions;
 
-import com.stormy.lightningadditions.block.ore.OreDictTooltipEvent;
 import com.stormy.lightningadditions.block.resource.BlockSpecialChair;
 import com.stormy.lightningadditions.config.ConfigurationManagerLA;
 import com.stormy.lightningadditions.crafting.RegistryParticleAccelerator;
@@ -31,7 +30,6 @@ import com.stormy.lightningadditions.utility.xpshare.CPacketRequest;
 import com.stormy.lightningadditions.utility.xpshare.SPacketUpdate;
 import com.stormy.lightningadditions.world.WorldGen;
 import com.stormy.lightningadditions.world.jsonhelper.JsonLoader;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -52,6 +50,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.util.logging.Level;
 
 import static com.stormy.lightningadditions.reference.ModInformation.MODID;
 import static com.stormy.lightningadditions.reference.ModInformation.MODNAME;
@@ -74,7 +73,7 @@ public class LightningAdditions
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LALogger.log("LA Pre-Initialisation!");
+        LALogger.log(Level.WARNING, "LA Pre-Initialisation!");
         ModNetworking.init();
         proxy.preInit(event);
 
@@ -114,7 +113,7 @@ public class LightningAdditions
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        LALogger.log("LA Initialisation!");
+        LALogger.log(Level.WARNING, "LA Initialisation!");
         proxy.registerRenders();
         proxy.init(event);
 
@@ -139,7 +138,7 @@ public class LightningAdditions
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        LALogger.log("LA Post-Initialisation!");
+        LALogger.log(Level.WARNING, "LA Post-Initialisation!");
         proxy.postInit(event);
     }
 

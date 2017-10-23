@@ -55,6 +55,8 @@ public class ModBlocks
     public static Block compressed_base;
     public static Block special_chair;
     public static Block nether_water;
+    public static Block rain_detector;
+    public static Block shared_chest;
 
     //Generators
     public static Block solar_generator;
@@ -115,6 +117,8 @@ public class ModBlocks
         compressed_base = new BlockNonupleCompressedBase().setUnlocalizedName("compressed_base").setRegistryName("compressed_base").setCreativeTab(CreativeTabLA.LA_TAB);
         special_chair = new BlockSpecialChair().setUnlocalizedName("special_chair").setRegistryName("special_chair").setCreativeTab(CreativeTabLA.LA_TAB);
         nether_water = new BlockNetherWater().setUnlocalizedName("nether_water").setRegistryName("nether_water").setCreativeTab(CreativeTabLA.LA_TAB);
+        rain_detector = new BlockRainDetector().setUnlocalizedName("rain_detector").setRegistryName("rain_detector").setCreativeTab(CreativeTabLA.LA_TAB);
+        shared_chest = new BlockShareChest().setUnlocalizedName("shared_chest").setRegistryName("shared_chest").setCreativeTab(CreativeTabLA.LA_TAB);
 
         //Generators
         solar_generator = new BlockSolarGenerator().setUnlocalizedName("solar_generator").setRegistryName("solar_generator").setCreativeTab(CreativeTabLA.LA_TAB);
