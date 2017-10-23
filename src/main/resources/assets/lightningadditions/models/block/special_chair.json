@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
+		"particle": "blocks/planks_oak",
 		"0": "blocks/planks_oak",
 		"1": "blocks/wool_colored_white"
 	},
