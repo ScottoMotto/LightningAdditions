@@ -15,12 +15,12 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
     private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
     @Override
-    public void func_192841_a(TileEntityDisplayCase te, double x, double y, double z, float partialTicks, int destroyStage, float partial) {
+    public void render(TileEntityDisplayCase te, double x, double y, double z, float partialTicks, int destroyStage, float partial) {
         if (te != null){
             ItemStack stack = te.getStackInSlot(0).copy();
             if (!stack.isEmpty()){
                 stack.setCount(1);
-                entityItem.setEntityItemStack(stack);
+                entityItem.setItem(stack);
                 entityItem.hoverStart = 0;
 
 //                LALogger.info(te.getTileData().toString());
@@ -48,7 +48,7 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
 
                     if (ConfigurationManagerLA.enableDisplayEditing) GlStateManager.scale(1 + (float) te.getTileData().getDouble("s")/10, 1 + (float) te.getTileData().getDouble("s")/10, 1 + te.getTileData().getDouble("s")/10);
 
-                    Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
+                    Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
                     GlStateManager.popMatrix();
                 } else {
@@ -78,7 +78,7 @@ public class TileEntityDisplayCaseRenderer extends TileEntitySpecialRenderer<Til
 
                     if (ConfigurationManagerLA.enableDisplayEditing) GlStateManager.scale(1 + (float) te.getTileData().getDouble("s")/10, 1 + (float) te.getTileData().getDouble("s")/10, 1 + te.getTileData().getDouble("s")/10);
 
-                    Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
+                    Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
                     GlStateManager.popMatrix();
                 }

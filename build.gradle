@@ -38,13 +38,13 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.1-14.22.1.2484"
+    version = "1.12.2-14.23.1.2555"
     runDir = "run"
-    mappings = "snapshot_20170411"
+    mappings = "snapshot_20171003"
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_1.12.1:4.7.8.95"
+    deobfCompile "mezz.jei:jei_1.12.2:4.8.5.144"
     compile "codechicken:CodeChickenLib:1.12-3.1.2.311:deobf"
 }
 

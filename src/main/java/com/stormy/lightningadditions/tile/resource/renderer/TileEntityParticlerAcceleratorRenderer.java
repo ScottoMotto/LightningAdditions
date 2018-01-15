@@ -12,12 +12,12 @@ public class TileEntityParticlerAcceleratorRenderer extends TileEntitySpecialRen
     private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
     @Override
-    public void func_192841_a(TileEntityParticleAccelerator te, double x, double y, double z, float partialTicks, int destroyStage, float partial) {
+    public void render(TileEntityParticleAccelerator te, double x, double y, double z, float partialTicks, int destroyStage, float partial) {
         if (te != null){
             ItemStack stack = te.getStackInSlot(1).copy();
             if (!stack.isEmpty()){
                 stack.setCount(1);
-                entityItem.setEntityItemStack(stack);
+                entityItem.setItem(stack);
                 entityItem.hoverStart = 0;
 
                 GlStateManager.pushMatrix();
@@ -35,7 +35,7 @@ public class TileEntityParticlerAcceleratorRenderer extends TileEntitySpecialRen
                 GlStateManager.rotate(90, 1f, 0f, 0f);
                 GlStateManager.rotate(180, 0f, 1f, 0f);
 
-                Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
+                Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
                 GlStateManager.popMatrix();
 

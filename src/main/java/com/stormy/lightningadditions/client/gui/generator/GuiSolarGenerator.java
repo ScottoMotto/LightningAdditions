@@ -99,7 +99,7 @@ public class GuiSolarGenerator extends GuiContainer{
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
-        this.func_191948_b(mouseX, mouseY);
+        this.renderHoveredToolTip(mouseX, mouseY);
     }
 
     private boolean isMouseOver(int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){

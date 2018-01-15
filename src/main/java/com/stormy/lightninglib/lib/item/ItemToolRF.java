@@ -94,8 +94,8 @@ public class ItemToolRF extends ItemToolBase implements IMultiModeItem, IEnergyC
     protected float getEfficiency(ItemStack stack)
     {
         if (isEnhanced(stack) && getEnergyStored(stack) >= energyPerUseCharged)
-        { return efficiencyOnProperMaterial * 1.5F; }
-        return efficiencyOnProperMaterial;
+        { return efficiency * 1.5F; }
+        return efficiency;
     }
 
     @Override
@@ -191,12 +191,12 @@ public class ItemToolRF extends ItemToolBase implements IMultiModeItem, IEnergyC
     { return 0; }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
 
         if (getEnergyStored(stack) < energyPerUse) {
             return 1.0F;
         }
-        return super.getStrVsBlock(stack, state);
+        return super.getDestroySpeed(stack, state);
     }
 
     @Override

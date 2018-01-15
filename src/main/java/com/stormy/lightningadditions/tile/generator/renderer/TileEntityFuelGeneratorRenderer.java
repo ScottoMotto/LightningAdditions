@@ -12,13 +12,15 @@ public class TileEntityFuelGeneratorRenderer extends TileEntitySpecialRenderer<T
 
     private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
+
+
     @Override
-    public void func_192841_a(TileEntityFuelGenerator te, double x, double y, double z, float partialTicks, int destroyStage, float partial) {
+    public void render(TileEntityFuelGenerator te, double x, double y, double z, float partialTicks, int destroyStage, float partial) {
         if (te != null){
             ItemStack fuelStack = te.getStackInSlot(0).copy();
             if (!fuelStack.isEmpty()){
                 fuelStack.setCount(1);
-                entityItem.setEntityItemStack(fuelStack);
+                entityItem.setItem(fuelStack);
                 entityItem.hoverStart = 0;
 
                 if (fuelStack.getItem() instanceof ItemBlock) {
@@ -33,7 +35,7 @@ public class TileEntityFuelGeneratorRenderer extends TileEntitySpecialRenderer<T
                     GlStateManager.scale(1.5D, 1.5D, 1.5D);
                     GlStateManager.translate(xOffset, yOffset, zOffset);
 
-                    Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
+                    Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
                     GlStateManager.popMatrix();
                 } else {
@@ -49,7 +51,7 @@ public class TileEntityFuelGeneratorRenderer extends TileEntitySpecialRenderer<T
 
                     GlStateManager.rotate(90, 1f, 0f, 0f);
 
-                    Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
+                    Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0D, 0D, 0D, 0.0F, 0.0F, false);
 
                     GlStateManager.popMatrix();
 

@@ -53,7 +53,8 @@ public class TileEntitySkyRenderer extends TileEntitySpecialRenderer<TileEntityS
         }, () -> renderSky(event.getPartialTicks()));
     }
 
-    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha){
+    @Override
+    public void render(TileEntitySky te, double x, double y, double z, float partialTicks, int destroyStage, float alpha){
         World world = te.getWorld();
         BlockPos pos = te.getPos();
         IBlockState state = world.getBlockState(pos);

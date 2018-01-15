@@ -126,7 +126,7 @@ public abstract class ItemToolBase extends ItemTool {
 
     protected float getEfficiency(ItemStack stack) {
 
-        return efficiencyOnProperMaterial;
+        return efficiency;
     }
 
     protected THashSet<Block> getEffectiveBlocks(ItemStack stack) {
@@ -152,7 +152,7 @@ public abstract class ItemToolBase extends ItemTool {
     @Override
     public boolean canHarvestBlock(IBlockState state, ItemStack stack) {
 
-        return getStrVsBlock(stack, state) > 1.0F;
+        return getDestroySpeed(stack, state) > 1.0F;
     }
 
     public boolean isEnchantable(ItemStack stack) { return true; }
@@ -170,7 +170,7 @@ public abstract class ItemToolBase extends ItemTool {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
 
         return (getEffectiveMaterials(stack).contains(state.getMaterial()) || getEffectiveBlocks(stack).contains(state)) ? getEfficiency(stack) : 1.0F;
     }
